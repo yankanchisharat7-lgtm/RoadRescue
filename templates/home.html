@@ -1,0 +1,2576 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   ROADRESCUE PROFESSIONAL HOME PAGE
+   ========================================================= */
+
+:root {
+    --rr-navy: #071a33;
+    --rr-dark: #0b2545;
+    --rr-blue: #0d6efd;
+    --rr-blue-dark: #0756c9;
+    --rr-light-blue: #e7f0ff;
+    --rr-bg: #f5f8fc;
+    --rr-text: #172b4d;
+    --rr-muted: #667085;
+    --rr-border: #e1e7ef;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.rr-home {
+    background: var(--rr-bg);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PROFESSIONAL ROR LOGO
+   R = BOLD
+   O = TYRE
+   R = BOLD
+   ========================================================= */
+
+.rr-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    height: 64px;
+
+    white-space: nowrap;
+}
+
+
+/* BOTH R LETTERS */
+
+.rr-logo-r {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 54px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+
+    color: #ffffff;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* TYRE O */
+
+.rr-logo-tyre {
+    width: 53px;
+    height: 53px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        inset 0 0 0 7px #ffffff,
+        0 0 0 2px rgba(255,255,255,0.15);
+}
+
+
+/* BLACK RUBBER */
+
+.rr-logo-tyre::before {
+    content: "";
+
+    position: absolute;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: var(--rr-navy);
+
+    box-shadow:
+        inset 0 0 0 5px #ffffff;
+}
+
+
+/* WHEEL HUB */
+
+.rr-logo-tyre::after {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        inset 0 0 0 5px var(--rr-navy);
+}
+
+
+/* TYRE TREAD DETAILS */
+
+.rr-tyre-tread {
+    position: absolute;
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 50%;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* TREAD MARKS */
+
+.rr-tyre-tread span {
+    position: absolute;
+
+    width: 4px;
+    height: 8px;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+
+    left: 24px;
+    top: 0;
+}
+
+
+/* Individual tread positions */
+
+.rr-tyre-tread span:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.rr-tyre-tread span:nth-child(2) {
+    transform: rotate(45deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(3) {
+    transform: rotate(90deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(4) {
+    transform: rotate(135deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(5) {
+    transform: rotate(180deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(6) {
+    transform: rotate(225deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(7) {
+    transform: rotate(270deg);
+    transform-origin: 2px 26px;
+}
+
+.rr-tyre-tread span:nth-child(8) {
+    transform: rotate(315deg);
+    transform-origin: 2px 26px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.rr-hero {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 570px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            120deg,
+            #06172e 0%,
+            #0a2d57 55%,
+            #0d4b91 100%
+        );
+
+    color: white;
+
+    border-radius: 0 0 32px 32px;
+
+    box-shadow:
+        0 20px 50px rgba(7, 26, 51, 0.18);
+}
+
+
+.rr-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 620px;
+    height: 620px;
+
+    right: -230px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 0 0 75px rgba(255,255,255,0.018),
+        0 0 0 150px rgba(255,255,255,0.012);
+}
+
+
+.rr-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    left: -170px;
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+
+.rr-hero-content {
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   HERO BRAND
+   ========================================================= */
+
+.rr-hero-brand {
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   HERO BADGE
+   ========================================================= */
+
+.rr-hero-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.10);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: rgba(255,255,255,0.92);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 22px;
+}
+
+
+.rr-hero-badge i {
+    color: #73b5ff;
+}
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.rr-hero h1 {
+    font-size: clamp(42px, 5vw, 68px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+}
+
+
+.rr-hero h1 span {
+    color: #66adff;
+}
+
+
+.rr-hero-text {
+    max-width: 650px;
+
+    color: rgba(255,255,255,0.76);
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+   ========================================================= */
+
+.rr-hero-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 13px;
+}
+
+
+.rr-primary-btn {
+    background: #ffffff;
+
+    color: #0756c9;
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.rr-primary-btn:hover {
+    background: #eaf2ff;
+
+    color: #064cae;
+
+    transform: translateY(-2px);
+}
+
+
+.rr-secondary-btn {
+    background: rgba(255,255,255,0.09);
+
+    color: #ffffff;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.rr-secondary-btn:hover {
+    background: rgba(255,255,255,0.16);
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO VEHICLE
+   ========================================================= */
+
+.rr-hero-visual {
+    position: relative;
+
+    height: 390px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.rr-hero-car {
+    font-size: 185px;
+
+    color: rgba(255,255,255,0.96);
+
+    filter:
+        drop-shadow(
+            0 20px 30px rgba(0,0,0,0.25)
+        );
+
+    z-index: 3;
+}
+
+
+.rr-hero-wheel {
+    position: absolute;
+
+    width: 270px;
+    height: 270px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 50%;
+
+    animation: rrRotate 20s linear infinite;
+}
+
+
+.rr-hero-wheel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 30px;
+
+    border: 1px dashed rgba(255,255,255,0.13);
+
+    border-radius: 50%;
+}
+
+
+@keyframes rrRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   TRUST STRIP
+   ========================================================= */
+
+.rr-trust-strip {
+    position: relative;
+
+    z-index: 5;
+
+    margin-top: -45px;
+
+    margin-bottom: 80px;
+}
+
+
+.rr-trust-card {
+    background: #ffffff;
+
+    border: 1px solid var(--rr-border);
+
+    border-radius: 18px;
+
+    padding: 22px 25px;
+
+    box-shadow:
+        0 12px 35px rgba(16,24,40,0.10);
+}
+
+
+.rr-trust-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.rr-trust-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--rr-light-blue);
+
+    color: var(--rr-blue-dark);
+
+    font-size: 24px;
+
+    flex-shrink: 0;
+}
+
+
+.rr-trust-item strong {
+    display: block;
+
+    color: var(--rr-text);
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+}
+
+
+.rr-trust-item small {
+    color: var(--rr-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.rr-section {
+    padding: 0 0 90px;
+}
+
+
+.rr-section-heading {
+    text-align: center;
+
+    max-width: 720px;
+
+    margin: 0 auto 45px;
+}
+
+
+.rr-section-label {
+    display: inline-block;
+
+    color: var(--rr-blue-dark);
+
+    background: var(--rr-light-blue);
+
+    padding: 7px 13px;
+
+    border-radius: 30px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 13px;
+}
+
+
+.rr-section-heading h2 {
+    color: var(--rr-text);
+
+    font-size: 36px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 12px;
+}
+
+
+.rr-section-heading p {
+    color: var(--rr-muted);
+
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   SERVICE CARDS
+   ========================================================= */
+
+.rr-service-card {
+    height: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid var(--rr-border);
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 6px 20px rgba(16,24,40,0.045);
+}
+
+
+.rr-service-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #a9c9f7;
+
+    box-shadow:
+        0 15px 35px rgba(13,110,253,0.10);
+}
+
+
+.rr-service-icon {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    margin-bottom: 22px;
+}
+
+
+.rr-service-card h4 {
+    color: var(--rr-text);
+
+    font-weight: 700;
+
+    font-size: 19px;
+
+    margin-bottom: 9px;
+}
+
+
+.rr-service-card p {
+    color: var(--rr-muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 0;
+}
+
+
+/* SERVICE COLORS */
+
+.rr-blue {
+    background: #e3efff;
+    color: #0756c9;
+}
+
+
+.rr-green {
+    background: #e4f6eb;
+    color: #157347;
+}
+
+
+.rr-red {
+    background: #ffe8e8;
+    color: #b42318;
+}
+
+
+.rr-yellow {
+    background: #fff3d6;
+    color: #9a6700;
+}
+
+
+.rr-purple {
+    background: #eee8ff;
+    color: #6941c6;
+}
+
+
+.rr-cyan {
+    background: #def7fa;
+    color: #087c91;
+}
+
+
+/* =========================================================
+   WHY ROADRESCUE
+   ========================================================= */
+
+.rr-why-section {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f0f6ff
+        );
+
+    border-top: 1px solid var(--rr-border);
+
+    border-bottom: 1px solid var(--rr-border);
+
+    padding: 80px 0;
+}
+
+
+.rr-feature {
+    text-align: center;
+
+    padding: 10px 15px;
+}
+
+
+.rr-feature-icon {
+    width: 72px;
+    height: 72px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    background: #e3efff;
+
+    color: var(--rr-blue-dark);
+
+    font-size: 30px;
+}
+
+
+.rr-feature h5 {
+    color: var(--rr-text);
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+
+.rr-feature p {
+    color: var(--rr-muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.rr-stats {
+    padding-top: 90px;
+}
+
+
+.rr-stat-card {
+    background: #ffffff;
+
+    border: 1px solid var(--rr-border);
+
+    border-radius: 18px;
+
+    padding: 28px 20px;
+
+    text-align: center;
+
+    height: 100%;
+
+    box-shadow:
+        0 6px 20px rgba(16,24,40,0.045);
+
+    transition: 0.2s ease;
+}
+
+
+.rr-stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 28px rgba(16,24,40,0.09);
+}
+
+
+.rr-stat-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    font-size: 25px;
+}
+
+
+.rr-stat-number {
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: var(--rr-text);
+
+    line-height: 1;
+
+    margin-bottom: 7px;
+}
+
+
+.rr-stat-label {
+    color: var(--rr-muted);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.rr-cta {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071a33,
+            #0d4b91
+        );
+
+    color: white;
+
+    border-radius: 24px;
+
+    padding: 60px 35px;
+
+    box-shadow:
+        0 18px 40px rgba(7,26,51,0.16);
+}
+
+
+.rr-cta::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    border-radius: 50%;
+
+    right: -100px;
+
+    top: -100px;
+}
+
+
+.rr-cta-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.rr-cta h2 {
+    font-weight: 800;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+
+.rr-cta p {
+    color: rgba(255,255,255,0.72);
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   REVIEWS
+   ========================================================= */
+
+.rr-review-card {
+    background: #ffffff;
+
+    border: 1px solid var(--rr-border);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    height: 100%;
+
+    box-shadow:
+        0 6px 20px rgba(16,24,40,0.045);
+}
+
+
+.rr-review-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 17px;
+}
+
+
+.rr-rating {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    background: #fff3d6;
+
+    color: #9a6700;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.rr-review-comment {
+    color: #475467;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    min-height: 75px;
+}
+
+
+.rr-review-line {
+    border: none;
+
+    border-top: 1px solid #edf0f4;
+
+    margin: 20px 0;
+}
+
+
+.rr-review-person {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.rr-review-avatar {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 12px;
+
+    background: var(--rr-light-blue);
+
+    color: var(--rr-blue-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+}
+
+
+.rr-review-person strong {
+    display: block;
+
+    color: var(--rr-text);
+
+    font-size: 13px;
+}
+
+
+.rr-review-person small {
+    color: var(--rr-muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.rr-contact {
+    padding-bottom: 75px;
+}
+
+
+.rr-contact-card {
+    background: #ffffff;
+
+    border: 1px solid var(--rr-border);
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 8px 25px rgba(16,24,40,0.05);
+}
+
+
+.rr-contact-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+}
+
+
+.rr-contact-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: var(--rr-light-blue);
+
+    color: var(--rr-blue-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+
+.rr-contact-item strong {
+    display: block;
+
+    color: var(--rr-text);
+
+    font-size: 13px;
+}
+
+
+.rr-contact-item span {
+    color: var(--rr-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.rr-footer {
+    background: var(--rr-navy);
+
+    color: white;
+
+    padding: 42px 0 25px;
+
+    border-radius: 28px 28px 0 0;
+}
+
+
+.rr-footer p {
+    color: rgba(255,255,255,0.60);
+
+    font-size: 13px;
+}
+
+
+.rr-footer-line {
+    border: none;
+
+    border-top: 1px solid rgba(255,255,255,0.10);
+
+    margin: 25px 0 18px;
+}
+
+
+.rr-footer-bottom {
+    color: rgba(255,255,255,0.48);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .rr-hero {
+        min-height: auto;
+
+        padding: 80px 0;
+    }
+
+
+    .rr-hero-visual {
+        height: 280px;
+
+        margin-top: 30px;
+    }
+
+
+    .rr-hero-car {
+        font-size: 130px;
+    }
+
+
+    .rr-hero-wheel {
+        width: 210px;
+        height: 210px;
+    }
+
+
+    .rr-trust-strip {
+        margin-top: -30px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .rr-logo {
+        height: 58px;
+
+        gap: 7px;
+    }
+
+
+    .rr-logo-r {
+        font-size: 48px;
+    }
+
+
+    .rr-logo-tyre {
+        width: 48px;
+        height: 48px;
+    }
+
+
+    .rr-logo-tyre::before {
+        width: 39px;
+        height: 39px;
+    }
+
+
+    .rr-logo-tyre::after {
+        width: 15px;
+        height: 15px;
+    }
+
+
+    .rr-hero {
+        border-radius: 0 0 22px 22px;
+
+        padding: 60px 0;
+    }
+
+
+    .rr-hero h1 {
+        font-size: 42px;
+    }
+
+
+    .rr-hero-text {
+        font-size: 15px;
+    }
+
+
+    .rr-hero-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .rr-primary-btn,
+    .rr-secondary-btn {
+        text-align: center;
+    }
+
+
+    .rr-section-heading h2 {
+        font-size: 29px;
+    }
+
+
+    .rr-trust-card {
+        padding: 20px;
+    }
+
+
+    .rr-trust-item {
+        margin-bottom: 15px;
+    }
+
+
+    .rr-cta {
+        padding: 45px 25px;
+    }
+
+
+    .rr-cta h2 {
+        font-size: 27px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rr-hero-wheel {
+        animation: none;
+    }
+
+
+    .rr-service-card,
+    .rr-stat-card,
+    .rr-primary-btn,
+    .rr-secondary-btn {
+        transition: none;
+    }
+
+}
+
+</style>
+
+
+<div class="rr-home">
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="rr-hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+
+                <!-- HERO CONTENT -->
+
+                <div class="col-lg-7 rr-hero-content">
+
+
+                    <!-- ROR BRAND -->
+
+                    <div class="rr-hero-brand">
+
+                        <div class="rr-logo">
+
+                            <span class="rr-logo-r">
+                                R
+                            </span>
+
+
+                            <span class="rr-logo-tyre">
+
+                                <span class="rr-tyre-tread">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </span>
+
+                            </span>
+
+
+                            <span class="rr-logo-r">
+                                R
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BADGE -->
+
+                    <div class="rr-hero-badge">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        TRUSTED ROADSIDE ASSISTANCE
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <h1>
+
+                        Help is just a
+                        <span>call away.</span>
+
+                    </h1>
+
+
+                    <p class="rr-hero-text">
+
+                        RoadRescue connects you with trusted
+                        mechanics for fast, reliable and
+                        professional roadside assistance
+                        whenever your vehicle needs help.
+
+                    </p>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="rr-hero-buttons">
+
+
+                        <a
+                            href="/mechanics/"
+                            class="rr-primary-btn"
+                        >
+
+                            <i class="bi bi-search me-2"></i>
+
+                            Find a Mechanic
+
+                        </a>
+
+
+                        <a
+                            href="/accounts/register/"
+                            class="rr-secondary-btn"
+                        >
+
+                            <i class="bi bi-person-plus me-2"></i>
+
+                            Create Account
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- VEHICLE VISUAL -->
+
+                <div class="col-lg-5">
+
+                    <div class="rr-hero-visual">
+
+                        <div class="rr-hero-wheel"></div>
+
+                        <i class="bi bi-car-front-fill rr-hero-car"></i>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TRUST STRIP
+         ===================================================== -->
+
+    <div class="container rr-trust-strip">
+
+        <div class="rr-trust-card">
+
+            <div class="row align-items-center g-3">
+
+
+                <div class="col-md-4">
+
+                    <div class="rr-trust-item">
+
+                        <div class="rr-trust-icon">
+
+                            <i class="bi bi-clock-history"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                24/7 Assistance
+                            </strong>
+
+                            <small>
+                                Help when you need it
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="rr-trust-item">
+
+                        <div class="rr-trust-icon">
+
+                            <i class="bi bi-person-check-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Trusted Mechanics
+                            </strong>
+
+                            <small>
+                                Reliable service professionals
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="rr-trust-item">
+
+                        <div class="rr-trust-icon">
+
+                            <i class="bi bi-lightning-charge-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Quick Response
+                            </strong>
+
+                            <small>
+                                Get assistance faster
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SERVICES
+         ===================================================== -->
+
+    <section class="rr-section">
+
+        <div class="container">
+
+
+            <div class="rr-section-heading">
+
+                <span class="rr-section-label">
+
+                    Our Services
+
+                </span>
+
+
+                <h2>
+
+                    Everything your vehicle needs
+
+                </h2>
+
+
+                <p>
+
+                    From a flat tyre to a complete breakdown,
+                    RoadRescue helps you find the right roadside
+                    service quickly.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- CAR -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="rr-service-card">
+
+                        <div class="rr-service-icon rr-blue">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Car Repair
+                        </h4>
+
+
+                        <p>
+
+                            Emergency roadside repair and
+                            assistance for cars and vehicles.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BIKE -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="rr-service-card">
+
+                        <div class="rr-service-icon rr-green">
+
+                            <i class="bi bi-bicycle"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Bike Repair
+                        </h4>
+
+
+                        <p>
+
+                            Quick roadside assistance for
+                            motorcycles, bikes and scooters.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOWING -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="rr-service-card">
+
+                        <div class="rr-service-icon rr-red">
+
+                            <i class="bi bi-truck"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Towing Service
+                        </h4>
+
+
+                        <p>
+
+                            Safe and dependable towing support
+                            when your vehicle cannot continue.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BATTERY -->
+
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="rr-service-card">
+
+                        <div class="rr-service-icon rr-yellow">
+
+                            <i class="bi bi-battery-charging"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Battery Assistance
+                        </h4>
+
+
+                        <p>
+
+                            Get jump-start and battery replacement
+                            assistance when your vehicle battery fails.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TYRE -->
+
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="rr-service-card">
+
+                        <div class="rr-service-icon rr-purple">
+
+                            <i class="bi bi-circle"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Tyre Assistance
+                        </h4>
+
+
+                        <p>
+
+                            Fast puncture repair, tyre replacement
+                            and roadside tyre assistance.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHY ROADRESCUE
+         ===================================================== -->
+
+    <section class="rr-why-section">
+
+        <div class="container">
+
+
+            <div class="rr-section-heading mb-5">
+
+                <span class="rr-section-label">
+
+                    Why RoadRescue
+
+                </span>
+
+
+                <h2>
+
+                    Roadside assistance made simple
+
+                </h2>
+
+
+                <p>
+
+                    Designed to make finding and booking
+                    roadside assistance easy for every driver.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- SUPPORT -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="rr-feature">
+
+                        <div class="rr-feature-icon">
+
+                            <i class="bi bi-clock-history"></i>
+
+                        </div>
+
+
+                        <h5>
+                            24/7 Support
+                        </h5>
+
+
+                        <p>
+
+                            Request assistance whenever
+                            you need roadside help.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VERIFIED -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="rr-feature">
+
+                        <div class="rr-feature-icon">
+
+                            <i class="bi bi-person-check-fill"></i>
+
+                        </div>
+
+
+                        <h5>
+                            Verified Mechanics
+                        </h5>
+
+
+                        <p>
+
+                            Connect with professional
+                            mechanics available for service.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RATINGS -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="rr-feature">
+
+                        <div class="rr-feature-icon">
+
+                            <i class="bi bi-star-fill"></i>
+
+                        </div>
+
+
+                        <h5>
+                            Customer Ratings
+                        </h5>
+
+
+                        <p>
+
+                            View customer feedback and
+                            make informed service choices.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="rr-feature">
+
+                        <div class="rr-feature-icon">
+
+                            <i class="bi bi-bell-fill"></i>
+
+                        </div>
+
+
+                        <h5>
+                            Service Updates
+                        </h5>
+
+
+                        <p>
+
+                            Receive important booking and
+                            service notifications.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STATISTICS
+         ===================================================== -->
+
+    <section class="rr-section rr-stats">
+
+        <div class="container">
+
+
+            <div class="rr-section-heading">
+
+                <span class="rr-section-label">
+
+                    RoadRescue Network
+
+                </span>
+
+
+                <h2>
+
+                    Our growing service community
+
+                </h2>
+
+
+                <p>
+
+                    A connected platform bringing customers
+                    and roadside professionals together.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- CUSTOMERS -->
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="rr-stat-card">
+
+                        <div class="rr-stat-icon rr-blue">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+
+                        <div class="rr-stat-number">
+
+                            {{ total_customers }}
+
+                        </div>
+
+
+                        <div class="rr-stat-label">
+
+                            Customers
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MECHANICS -->
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="rr-stat-card">
+
+                        <div class="rr-stat-icon rr-green">
+
+                            <i class="bi bi-tools"></i>
+
+                        </div>
+
+
+                        <div class="rr-stat-number">
+
+                            {{ total_mechanics }}
+
+                        </div>
+
+
+                        <div class="rr-stat-label">
+
+                            Mechanics
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOOKINGS -->
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="rr-stat-card">
+
+                        <div class="rr-stat-icon rr-yellow">
+
+                            <i class="bi bi-calendar-check-fill"></i>
+
+                        </div>
+
+
+                        <div class="rr-stat-number">
+
+                            {{ total_bookings }}
+
+                        </div>
+
+
+                        <div class="rr-stat-label">
+
+                            Bookings
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVIEWS -->
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="rr-stat-card">
+
+                        <div class="rr-stat-icon rr-purple">
+
+                            <i class="bi bi-star-fill"></i>
+
+                        </div>
+
+
+                        <div class="rr-stat-number">
+
+                            {{ total_reviews }}
+
+                        </div>
+
+
+                        <div class="rr-stat-label">
+
+                            Reviews
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+         ===================================================== -->
+
+    <section class="rr-section">
+
+        <div class="container">
+
+
+            <div class="rr-cta text-center">
+
+                <div class="rr-cta-content">
+
+
+                    <h2>
+
+                        Need roadside assistance?
+
+                    </h2>
+
+
+                    <p>
+
+                        Find a trusted mechanic and get your
+                        vehicle back on the road.
+
+                    </p>
+
+
+                    <a
+                        href="/mechanics/"
+                        class="rr-primary-btn"
+                    >
+
+                        <i class="bi bi-tools me-2"></i>
+
+                        Find a Mechanic
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CUSTOMER REVIEWS
+         ===================================================== -->
+
+    <section class="rr-section">
+
+        <div class="container">
+
+
+            <div class="rr-section-heading">
+
+                <span class="rr-section-label">
+
+                    Customer Feedback
+
+                </span>
+
+
+                <h2>
+
+                    What our customers say
+
+                </h2>
+
+
+                <p>
+
+                    Real feedback from customers who have
+                    used RoadRescue services.
+
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                {% for review in latest_reviews %}
+
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="rr-review-card">
+
+
+                        <div class="rr-review-top">
+
+                            <span class="rr-rating">
+
+                                <i class="bi bi-star-fill"></i>
+
+                                {{ review.rating }}/5
+
+                            </span>
+
+
+                            <i class="bi bi-quote fs-3 text-primary opacity-50"></i>
+
+                        </div>
+
+
+                        <p class="rr-review-comment">
+
+                            "{{ review.comment }}"
+
+                        </p>
+
+
+                        <hr class="rr-review-line">
+
+
+                        <div class="rr-review-person">
+
+
+                            <div class="rr-review-avatar">
+
+                                {{ review.customer.username|first|upper }}
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    {{ review.customer.username }}
+
+                                </strong>
+
+
+                                <small>
+
+                                    Customer •
+                                    {{ review.mechanic.shop_name }}
+
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                {% empty %}
+
+
+                <div class="col-12">
+
+                    <div class="rr-review-card text-center py-5">
+
+
+                        <div class="rr-service-icon rr-blue mx-auto">
+
+                            <i class="bi bi-chat-square-text"></i>
+
+                        </div>
+
+
+                        <h5 class="fw-bold">
+
+                            No reviews yet
+
+                        </h5>
+
+
+                        <p class="text-muted mb-0">
+
+                            Customer reviews will appear here
+                            once services are completed.
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT
+         ===================================================== -->
+
+    <section class="rr-contact">
+
+        <div class="container">
+
+
+            <div class="rr-contact-card">
+
+
+                <div class="row align-items-center g-4">
+
+
+                    <div class="col-lg-5">
+
+
+                        <span class="rr-section-label">
+
+                            Get In Touch
+
+                        </span>
+
+
+                        <h2 class="fw-bold mt-2">
+
+                            Need help with RoadRescue?
+
+                        </h2>
+
+
+                        <p class="text-muted">
+
+                            Our support team is available to
+                            assist you with your roadside
+                            assistance experience.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="col-lg-7">
+
+
+                        <div class="row g-3">
+
+
+                            <div class="col-md-6">
+
+
+                                <div class="rr-contact-item">
+
+
+                                    <div class="rr-contact-icon">
+
+                                        <i class="bi bi-envelope-fill"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Email Support
+                                        </strong>
+
+
+                                        <span>
+                                            Support1506@roadrescue.com
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+
+                                <div class="rr-contact-item">
+
+
+                                    <div class="rr-contact-icon">
+
+                                        <i class="bi bi-telephone-fill"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Phone Support
+                                        </strong>
+
+
+                                        <span>
+                                            +91 63661 95547
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="rr-footer">
+
+        <div class="container">
+
+
+            <div class="row align-items-center g-4">
+
+
+                <div class="col-md-6">
+
+
+                    <!-- ROR FOOTER LOGO -->
+
+                    <div class="rr-logo mb-3">
+
+
+                        <span class="rr-logo-r">
+                            R
+                        </span>
+
+
+                        <span class="rr-logo-tyre">
+
+                            <span class="rr-tyre-tread">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </span>
+
+                        </span>
+
+
+                        <span class="rr-logo-r">
+                            R
+                        </span>
+
+
+                    </div>
+
+
+                    <p class="mb-0">
+
+                        Fast • Reliable • Secure Roadside Assistance
+
+                    </p>
+
+
+                </div>
+
+
+                <div class="col-md-6 text-md-end">
+
+
+                    <p class="mb-0">
+
+                        Helping drivers get back on the road
+                        with confidence.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+            <hr class="rr-footer-line">
+
+
+            <div class="rr-footer-bottom text-center">
+
+                © 2026 RoadRescue
+                &nbsp; | &nbsp;
+                Developed by
+                <strong>
+                    Sharat Yankanchi
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+{% endblock %}

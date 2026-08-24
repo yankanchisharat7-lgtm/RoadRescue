@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-7">
+
+            <div class="card availability-card border-0 shadow-sm rounded-4">
+
+                <div class="card-body text-center p-5">
+
+
+                    <!-- Icon -->
+
+                    <div class="availability-icon mx-auto mb-4">
+
+                        <i class="bi bi-calendar-x"></i>
+
+                    </div>
+
+
+                    <!-- Heading -->
+
+                    <h2 class="fw-bold text-dark mb-3">
+                        Mechanic Not Available
+                    </h2>
+
+
+                    <!-- Message -->
+
+                    <p class="text-muted mb-4 px-md-4">
+
+                        Sorry, this mechanic is currently not available
+                        for booking.
+
+                    </p>
+
+
+                    <!-- Information -->
+
+                    <div class="alert alert-light border rounded-3
+                                text-start mb-4">
+
+                        <div class="d-flex align-items-start">
+
+                            <i class="bi bi-info-circle-fill
+                                      text-primary fs-5 me-3">
+                            </i>
+
+                            <div>
+
+                                <strong class="d-block mb-1">
+                                    Looking for another mechanic?
+                                </strong>
+
+                                <span class="text-muted small">
+                                    You can browse other available mechanics
+                                    and find the right roadside assistance
+                                    for your vehicle.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Back Button -->
+
+                    <a
+                        href="{% url 'mechanic_list' %}"
+                        class="btn btn-primary px-4 py-2 rounded-3
+                               fw-semibold shadow-sm">
+
+                        <i class="bi bi-arrow-left me-2"></i>
+
+                        Back to Mechanics
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================================
+       AVAILABILITY CARD
+    ================================= */
+
+    .availability-card {
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+
+    /* ================================
+       ICON
+    ================================= */
+
+    .availability-icon {
+        width: 90px;
+        height: 90px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(220, 53, 69, 0.08);
+
+        color: #dc3545;
+
+        border-radius: 22px;
+
+        font-size: 2.8rem;
+    }
+
+
+    /* ================================
+       BUTTON
+    ================================= */
+
+    .availability-card .btn {
+        transition: all 0.2s ease;
+    }
+
+    .availability-card .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(13, 110, 253, 0.18) !important;
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 576px) {
+
+        .availability-card .card-body {
+            padding: 35px 22px !important;
+        }
+
+        .availability-icon {
+            width: 75px;
+            height: 75px;
+            font-size: 2.2rem;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+

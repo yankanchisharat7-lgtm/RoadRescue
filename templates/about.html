@@ -1,0 +1,527 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .about-page {
+        background: #f5f7fa;
+        min-height: 100vh;
+        padding: 60px 0;
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .about-header h1 {
+        color: #0b1f3a;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+
+    .about-header p {
+        color: #64748b;
+        font-size: 1.1rem;
+    }
+
+    .header-line {
+        width: 70px;
+        height: 4px;
+        background: #0b1f3a;
+        border-radius: 10px;
+        margin: 20px auto 0;
+    }
+
+    .about-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+    }
+
+    .about-section {
+        padding: 42px;
+    }
+
+    .section-title {
+        color: #0b1f3a;
+        font-weight: 700;
+        font-size: 1.45rem;
+        margin-bottom: 18px;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 3px;
+        background: #0b1f3a;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .mission-text {
+        color: #475569;
+        line-height: 1.8;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .feature-card {
+        height: 100%;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        border-color: #cbd5e1;
+    }
+
+    .feature-icon {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0b1f3a;
+        color: #ffffff;
+        border-radius: 10px;
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .feature-card h5 {
+        color: #0b1f3a;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .feature-card p {
+        color: #64748b;
+        font-size: 0.92rem;
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+
+    .developer-section {
+        background: #0b1f3a;
+        color: #ffffff;
+        padding: 42px;
+    }
+
+    .developer-section .section-title {
+        color: #ffffff;
+    }
+
+    .developer-section .section-title::after {
+        background: #ffffff;
+    }
+
+    .developer-content {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-top: 25px;
+    }
+
+    .developer-avatar {
+        width: 75px;
+        height: 75px;
+        min-width: 75px;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #0b1f3a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .developer-info h4 {
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .developer-info .role {
+        color: #cbd5e1;
+        margin-bottom: 10px;
+    }
+
+    .developer-info p {
+        color: #e2e8f0;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+    .technology-badge {
+        display: inline-block;
+        padding: 7px 13px;
+        margin: 5px 4px 0 0;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        font-size: 0.82rem;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .about-footer {
+        text-align: center;
+        padding: 30px 20px;
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+
+        .about-page {
+            padding: 35px 0;
+        }
+
+        .about-section,
+        .developer-section {
+            padding: 28px;
+        }
+
+        .developer-content {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .about-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+
+<div class="about-page">
+
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="about-header">
+
+            <h1>
+                About RoadRescue
+            </h1>
+
+            <p class="mb-0">
+                A reliable and efficient roadside assistance platform
+            </p>
+
+            <div class="header-line"></div>
+
+        </div>
+
+
+        <!-- Main Card -->
+        <div class="about-card">
+
+
+            <!-- Mission Section -->
+            <div class="about-section">
+
+                <h3 class="section-title">
+                    Our Mission
+                </h3>
+
+                <p class="mission-text">
+                    RoadRescue is a digital roadside assistance platform designed
+                    to connect vehicle owners with trusted mechanics quickly and
+                    efficiently. The platform simplifies the process of finding,
+                    booking, and managing roadside assistance services.
+                </p>
+
+                <p class="mission-text mt-3">
+                    Whether a vehicle breaks down in the city or on a highway,
+                    RoadRescue helps users locate suitable mechanics, check
+                    availability, manage service requests, and receive important
+                    booking updates through a single platform.
+                </p>
+
+            </div>
+
+
+            <!-- Features Section -->
+            <div class="about-section border-top">
+
+                <h3 class="section-title">
+                    Platform Features
+                </h3>
+
+                <div class="row g-4 mt-2">
+
+
+                    <!-- Feature 1 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                +
+                            </div>
+
+                            <h5>
+                                Mechanic Booking
+                            </h5>
+
+                            <p>
+                                Users can find and book roadside mechanics
+                                based on their service requirements.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 2 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                ✓
+                            </div>
+
+                            <h5>
+                                Availability
+                            </h5>
+
+                            <p>
+                                View mechanic availability and manage
+                                service requests efficiently.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 3 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                ★
+                            </div>
+
+                            <h5>
+                                Reviews & Ratings
+                            </h5>
+
+                            <p>
+                                Customers can share feedback and ratings
+                                to build trust within the platform.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 4 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                →
+                            </div>
+
+                            <h5>
+                                Google Maps
+                            </h5>
+
+                            <p>
+                                Integrated navigation helps users reach
+                                mechanics conveniently.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 5 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                #
+                            </div>
+
+                            <h5>
+                                PDF Invoices
+                            </h5>
+
+                            <p>
+                                Generate professional PDF invoices for
+                                completed roadside assistance services.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 6 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                @
+                            </div>
+
+                            <h5>
+                                Notifications
+                            </h5>
+
+                            <p>
+                                Email notifications keep customers informed
+                                about important booking updates.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 7 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                ≡
+                            </div>
+
+                            <h5>
+                                Booking Management
+                            </h5>
+
+                            <p>
+                                Manage service requests, booking status,
+                                and service information in one place.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Feature 8 -->
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+                                🔒
+                            </div>
+
+                            <h5>
+                                Secure Authentication
+                            </h5>
+
+                            <p>
+                                User authentication helps protect accounts
+                                and maintain secure access to the platform.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Developer Section -->
+            <div class="developer-section">
+
+                <h3 class="section-title">
+                    Developed By
+                </h3>
+
+
+                <div class="developer-content">
+
+                    <div class="developer-avatar">
+                        SY
+                    </div>
+
+
+                    <div class="developer-info">
+
+                        <h4>
+                            Sharat Yankanchi
+                        </h4>
+
+                        <div class="role">
+                            B.Tech Graduate · Software & Web Development
+                        </div>
+
+                        <p>
+                            Passionate about building practical software
+                            solutions using Python, Django, databases,
+                            artificial intelligence, and modern web technologies.
+                        </p>
+
+
+                        <div class="mt-3">
+
+                            <span class="technology-badge">
+                                Python
+                            </span>
+
+                            <span class="technology-badge">
+                                Django
+                            </span>
+
+                            <span class="technology-badge">
+                                Database
+                            </span>
+
+                            <span class="technology-badge">
+                                AI
+                            </span>
+
+                            <span class="technology-badge">
+                                Full-Stack Development
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="about-footer">
+
+            RoadRescue — Connecting drivers with reliable roadside assistance.
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page Heading -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold text-primary">
+            🚗 Book Roadside Assistance
+        </h1>
+
+        <p class="text-muted">
+            Request assistance from your selected mechanic.
+        </p>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+
+            <!-- Mechanic Information -->
+
+            <div class="card shadow border-0 mb-4">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h4 class="mb-0">
+                        👨‍🔧 Selected Mechanic
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <p>
+                                <strong>Shop:</strong>
+                                {{ mechanic.shop_name }}
+                            </p>
+
+                            <p>
+                                <strong>Mechanic:</strong>
+                                {{ mechanic.name }}
+                            </p>
+
+                            <p>
+                                <strong>Phone:</strong>
+                                {{ mechanic.phone }}
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <p>
+                                <strong>Location:</strong>
+                                {{ mechanic.location }}
+                            </p>
+
+                            <p>
+                                <strong>Vehicle Type:</strong>
+                                {{ mechanic.vehicle_type }}
+                            </p>
+
+                            <p>
+                                <strong>Rating:</strong>
+                                ⭐ {{ mechanic.rating }}/5
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Booking Form -->
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        📋 Booking Information
+                    </h4>
+
+                </div>
+
+
+                <div class="card-body p-4">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+
+                        <!-- Customer Name -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Customer Name
+                            </label>
+
+                            {{ form.customer_name }}
+
+                            {% if form.customer_name.errors %}
+
+                                <div class="text-danger small mt-1">
+                                    {{ form.customer_name.errors }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Phone Number
+                            </label>
+
+                            {{ form.customer_phone }}
+
+                            {% if form.customer_phone.errors %}
+
+                                <div class="text-danger small mt-1">
+                                    {{ form.customer_phone.errors }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Location -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                📍 Your Current Location
+                            </label>
+
+                            {{ form.customer_location }}
+
+                            {% if form.customer_location.errors %}
+
+                                <div class="text-danger small mt-1">
+                                    {{ form.customer_location.errors }}
+                                </div>
+
+                            {% endif %}
+
+                            <small class="text-muted">
+                                Enter the location where your vehicle needs assistance.
+                            </small>
+
+                        </div>
+
+
+                        <!-- Vehicle -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                🚗 Vehicle Type
+                            </label>
+
+                            {{ form.vehicle_type }}
+
+                            {% if form.vehicle_type.errors %}
+
+                                <div class="text-danger small mt-1">
+                                    {{ form.vehicle_type.errors }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Problem -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                🔧 Describe the Problem
+                            </label>
+
+                            {{ form.problem }}
+
+                            {% if form.problem.errors %}
+
+                                <div class="text-danger small mt-1">
+                                    {{ form.problem.errors }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex gap-2">
+
+                            <a
+                                href="{% url 'mechanic_detail' mechanic.id %}"
+                                class="btn btn-secondary">
+
+                                ← Back
+
+                            </a>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-success flex-grow-1">
+
+                                🚗 Confirm Booking
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- Safety Message -->
+
+            <div class="alert alert-info mt-4">
+
+                <strong>ℹ️ Important:</strong>
+
+                Please provide your correct location and describe your
+                vehicle problem clearly so the mechanic can assist you quickly.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

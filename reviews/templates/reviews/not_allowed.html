@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .review-unavailable-page {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 60px 20px 70px;
+    }
+
+    .unavailable-card {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(11, 31, 58, 0.09);
+    }
+
+    .unavailable-body {
+        padding: 50px 45px;
+        text-align: center;
+    }
+
+    /* ICON */
+
+    .warning-icon {
+        width: 92px;
+        height: 92px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: #fff7df;
+        color: #d89b00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ffe69c;
+    }
+
+    .warning-icon i {
+        font-size: 43px;
+    }
+
+    /* HEADING */
+
+    .unavailable-title {
+        color: #0b1f3a;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .unavailable-lead {
+        color: #344054;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .unavailable-description {
+        max-width: 570px;
+        margin: auto;
+        color: #667085;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .unavailable-divider {
+        border: 0;
+        border-top: 1px solid #e9edf2;
+        margin: 30px 0;
+    }
+
+    /* STEPS */
+
+    .review-steps {
+        background: #f7f9fc;
+        border: 1px solid #e3e8ef;
+        border-radius: 15px;
+        padding: 23px 25px;
+        text-align: left;
+    }
+
+    .steps-heading {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 18px;
+    }
+
+    .steps-heading i {
+        color: #0d6efd;
+        font-size: 18px;
+    }
+
+    .steps-heading h5 {
+        color: #172b4d;
+        font-size: 15px;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .review-steps ol {
+        margin: 0;
+        padding-left: 23px;
+    }
+
+    .review-steps li {
+        color: #475467;
+        font-size: 13px;
+        line-height: 1.6;
+        padding-left: 5px;
+        margin-bottom: 12px;
+    }
+
+    .review-steps li:last-child {
+        margin-bottom: 0;
+    }
+
+    .review-steps strong {
+        color: #198754;
+    }
+
+    /* BUTTONS */
+
+    .unavailable-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .unavailable-actions .btn {
+        border-radius: 11px;
+        padding: 12px 21px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .unavailable-footer {
+        color: #8a96a6;
+        font-size: 12px;
+        margin-top: 25px;
+    }
+
+    @media (max-width: 576px) {
+
+        .review-unavailable-page {
+            padding: 40px 15px 50px;
+        }
+
+        .unavailable-body {
+            padding: 40px 22px;
+        }
+
+        .unavailable-title {
+            font-size: 1.65rem;
+        }
+
+        .unavailable-actions {
+            flex-direction: column;
+        }
+
+        .unavailable-actions .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<div class="review-unavailable-page">
+
+
+    <div class="unavailable-card">
+
+
+        <div class="unavailable-body">
+
+
+            <!-- ICON -->
+
+            <div class="warning-icon">
+
+                <i class="bi bi-exclamation-triangle-fill"></i>
+
+            </div>
+
+
+            <!-- HEADING -->
+
+            <h1 class="unavailable-title">
+
+                Review Not Available
+
+            </h1>
+
+
+            <p class="unavailable-lead">
+
+                You cannot review this mechanic yet.
+
+            </p>
+
+
+            <p class="unavailable-description">
+
+                You can submit a review only after you have
+                completed a booking with this mechanic.
+
+            </p>
+
+
+            <hr class="unavailable-divider">
+
+
+            <!-- STEPS -->
+
+            <div class="review-steps">
+
+
+                <div class="steps-heading">
+
+                    <i class="bi bi-list-check"></i>
+
+                    <h5>
+                        How to leave a review
+                    </h5>
+
+                </div>
+
+
+                <ol>
+
+                    <li>
+                        Book a mechanic.
+                    </li>
+
+                    <li>
+                        Complete the roadside assistance service.
+                    </li>
+
+                    <li>
+                        Wait until the booking status becomes
+                        <strong>Completed</strong>.
+                    </li>
+
+                    <li>
+                        Return to the mechanic's profile and
+                        submit your review.
+                    </li>
+
+                </ol>
+
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="unavailable-actions">
+
+
+                <a
+                    href="{% url 'my_bookings' %}"
+                    class="btn btn-primary">
+
+                    <i class="bi bi-calendar-check me-2"></i>
+
+                    My Bookings
+
+                </a>
+
+
+                <a
+                    href="{% url 'mechanic_list' %}"
+                    class="btn btn-outline-secondary">
+
+                    <i class="bi bi-tools me-2"></i>
+
+                    Find Mechanics
+
+                </a>
+
+
+            </div>
+
+
+            <div class="unavailable-footer">
+
+                <i class="bi bi-info-circle me-1"></i>
+
+                Reviews become available after a completed service.
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

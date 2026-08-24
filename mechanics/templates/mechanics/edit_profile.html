@@ -1,0 +1,692 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ============================= */
+    /* PAGE */
+    /* ============================= */
+
+    .edit-wrapper {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 40px 15px 60px;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .page-header h1 {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #212529;
+        letter-spacing: -0.5px;
+    }
+
+    .page-header p {
+        color: #6c757d;
+        margin-top: 8px;
+    }
+
+
+    /* ============================= */
+    /* MAIN CARD */
+    /* ============================= */
+
+    .edit-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+    }
+
+    .edit-card-header {
+        background: linear-gradient(135deg, #0d6efd, #084298);
+        color: #ffffff;
+        padding: 28px 35px;
+    }
+
+    .header-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .edit-card-header h3 {
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .edit-card-header p {
+        margin: 0;
+        opacity: 0.85;
+        font-size: 14px;
+    }
+
+    .edit-card-body {
+        padding: 40px;
+    }
+
+
+    /* ============================= */
+    /* SECTION */
+    /* ============================= */
+
+    .form-section {
+        margin-bottom: 40px;
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .section-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .section-heading h4 {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin: 0;
+        color: #212529;
+    }
+
+    .section-heading p {
+        margin: 3px 0 0;
+        color: #6c757d;
+        font-size: 13px;
+    }
+
+
+    /* ============================= */
+    /* FORM FIELDS */
+    /* ============================= */
+
+    .field-group {
+        margin-bottom: 4px;
+    }
+
+    .field-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 8px;
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+        padding: 11px 13px;
+        background: #ffffff;
+        color: #212529;
+        transition: all 0.2s ease;
+    }
+
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+        border-color: #0d6efd;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+    }
+
+    .field-group input[type="file"] {
+        padding: 9px 11px;
+        background: #f8f9fa;
+    }
+
+
+    /* ============================= */
+    /* DIVIDER */
+    /* ============================= */
+
+    .section-divider {
+        border: 0;
+        border-top: 1px solid #e9ecef;
+        margin: 10px 0 40px;
+    }
+
+
+    /* ============================= */
+    /* CHARGE BOX */
+    /* ============================= */
+
+    .charges-container {
+        background: #f8fbff;
+        border: 1px solid #e2ecfa;
+        border-radius: 17px;
+        padding: 25px;
+    }
+
+    .charge-field label::before {
+        content: "₹";
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        background: #e7f1ff;
+        color: #0d6efd;
+        border-radius: 6px;
+        font-size: 12px;
+        margin-right: 7px;
+        font-weight: 800;
+    }
+
+
+    /* ============================= */
+    /* ERROR MESSAGE */
+    /* ============================= */
+
+    .error-box {
+        background: #fff5f5;
+        border: 1px solid #f1b0b7;
+        border-radius: 12px;
+        padding: 16px 18px;
+        color: #842029;
+    }
+
+    .error-box strong {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+
+    /* ============================= */
+    /* ACTION BUTTONS */
+    /* ============================= */
+
+    .form-actions {
+        border-top: 1px solid #e9ecef;
+        padding-top: 30px;
+        margin-top: 35px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .form-actions .btn {
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-weight: 700;
+    }
+
+    .save-btn {
+        min-width: 160px;
+    }
+
+    .cancel-btn {
+        min-width: 120px;
+    }
+
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
+
+    @media (max-width: 768px) {
+
+        .edit-wrapper {
+            padding-top: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 1.9rem;
+        }
+
+        .edit-card-header {
+            padding: 25px;
+        }
+
+        .edit-card-body {
+            padding: 25px 20px;
+        }
+
+        .charges-container {
+            padding: 18px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<div class="edit-wrapper">
+
+
+    <!-- ============================= -->
+    <!-- PAGE HEADER -->
+    <!-- ============================= -->
+
+    <div class="page-header">
+
+        <h1>
+            Edit Mechanic Profile
+        </h1>
+
+        <p>
+            Keep your shop information and service pricing up to date.
+        </p>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- MAIN FORM CARD -->
+    <!-- ============================= -->
+
+    <div class="edit-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="edit-card-header">
+
+            <div class="header-icon">
+
+                <i class="bi bi-person-gear"></i>
+
+            </div>
+
+            <h3>
+                Profile Information
+            </h3>
+
+            <p>
+                Update your professional information and contact details.
+            </p>
+
+        </div>
+
+
+        <!-- CARD BODY -->
+
+        <div class="edit-card-body">
+
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- ============================= -->
+                <!-- PERSONAL & SHOP INFORMATION -->
+                <!-- ============================= -->
+
+                <div class="form-section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+                            <i class="bi bi-person-vcard"></i>
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Personal & Shop Details
+                            </h4>
+
+                            <p>
+                                Basic information about you and your workshop.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-4">
+
+
+                        <!-- NAME -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-person me-1"></i>
+                                Name
+                            </label>
+
+                            {{ form.name }}
+
+                        </div>
+
+
+                        <!-- SHOP NAME -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-shop me-1"></i>
+                                Shop Name
+                            </label>
+
+                            {{ form.shop_name }}
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-telephone me-1"></i>
+                                Phone
+                            </label>
+
+                            {{ form.phone }}
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-envelope me-1"></i>
+                                Email
+                            </label>
+
+                            {{ form.email }}
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-geo-alt me-1"></i>
+                                Location
+                            </label>
+
+                            {{ form.location }}
+
+                        </div>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-award me-1"></i>
+                                Experience (Years)
+                            </label>
+
+                            {{ form.experience }}
+
+                        </div>
+
+
+                        <!-- VEHICLE TYPE -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-car-front me-1"></i>
+                                Vehicle Type
+                            </label>
+
+                            {{ form.vehicle_type }}
+
+                        </div>
+
+
+                        <!-- PHOTO -->
+
+                        <div class="col-md-6 field-group">
+
+                            <label>
+                                <i class="bi bi-camera me-1"></i>
+                                Profile Photo
+                            </label>
+
+                            {{ form.photo }}
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- SERVICE CHARGES -->
+                <!-- ============================= -->
+
+                <hr class="section-divider">
+
+
+                <div class="form-section">
+
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+
+                            <i class="bi bi-currency-rupee"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Service Charges
+                            </h4>
+
+                            <p>
+                                Set the prices customers will see for your services.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="charges-container">
+
+                        <div class="row g-4">
+
+
+                            <!-- INSPECTION -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Inspection Charge
+                                </label>
+
+                                {{ form.inspection_charge }}
+
+                            </div>
+
+
+                            <!-- BATTERY -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Battery Charge
+                                </label>
+
+                                {{ form.battery_charge }}
+
+                            </div>
+
+
+                            <!-- TYRE -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Tyre Change Charge
+                                </label>
+
+                                {{ form.tyre_change_charge }}
+
+                            </div>
+
+
+                            <!-- ENGINE -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Engine Repair Charge
+                                </label>
+
+                                {{ form.engine_repair_charge }}
+
+                            </div>
+
+
+                            <!-- OIL -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Oil Change Charge
+                                </label>
+
+                                {{ form.oil_change_charge }}
+
+                            </div>
+
+
+                            <!-- BRAKE -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Brake Repair Charge
+                                </label>
+
+                                {{ form.brake_repair_charge }}
+
+                            </div>
+
+
+                            <!-- TOWING -->
+
+                            <div class="col-md-6 field-group charge-field">
+
+                                <label>
+                                    Towing Charge Per KM
+                                </label>
+
+                                {{ form.towing_charge_per_km }}
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- FORM ERRORS -->
+                <!-- ============================= -->
+
+                {% if form.errors %}
+
+                    <div class="error-box mt-4">
+
+                        <strong>
+
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            Please correct the following errors:
+
+                        </strong>
+
+                        {{ form.errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- ============================= -->
+                <!-- ACTION BUTTONS -->
+                <!-- ============================= -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success save-btn"
+                    >
+
+                        <i class="bi bi-check-circle me-2"></i>
+                        Save Changes
+
+                    </button>
+
+
+                    <a
+                        href="{% url 'mechanic_dashboard' %}"
+                        class="btn btn-outline-secondary cancel-btn"
+                    >
+
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Cancel
+
+                    </a>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

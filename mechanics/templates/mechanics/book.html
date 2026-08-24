@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .booking-wrapper {
+        max-width: 850px;
+        margin: 60px auto;
+    }
+
+    .booking-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+    }
+
+    .booking-header {
+        background: linear-gradient(135deg, #0d6efd, #084298);
+        color: white;
+        padding: 35px;
+    }
+
+    .booking-icon {
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        font-size: 40px;
+        margin-bottom: 24px;
+    }
+
+    .booking-header h2 {
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .booking-header p {
+        margin-bottom: 0;
+        opacity: 0.85;
+    }
+
+    .booking-body {
+        padding: 35px;
+    }
+
+    .mechanic-name {
+        color: #0d6efd;
+        font-weight: 700;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 12px 14px;
+        border: 1px solid #ced4da;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+    }
+
+    .booking-info {
+        background: #f8f9fa;
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+    }
+
+    .booking-info i {
+        color: #0d6efd;
+        margin-right: 8px;
+    }
+
+    .confirm-btn {
+        background: #0d6efd;
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 13px 28px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    .confirm-btn:hover {
+        background: #0b5ed7;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(13, 110, 253, 0.25);
+    }
+
+    .cancel-btn {
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-weight: 600;
+    }
+
+    /* Smaller and clearer rating badge */
+
+    .rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #fff3cd;
+        color: #856404;
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    @media (max-width: 576px) {
+
+        .booking-wrapper {
+            margin: 30px 15px;
+        }
+
+        .booking-header,
+        .booking-body {
+            padding: 25px;
+        }
+
+        .booking-icon {
+            width: 80px;
+            height: 80px;
+            font-size: 35px;
+        }
+
+    }
+
+</style>
+
+
+<div class="booking-wrapper">
+
+    <div class="booking-card">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="booking-header">
+
+            <div class="booking-icon">
+
+                <i class="bi bi-calendar-plus"></i>
+
+            </div>
+
+
+            <h2>
+                Book a Mechanic
+            </h2>
+
+
+            <p>
+                Request professional roadside assistance
+                from a trusted mechanic.
+            </p>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <div class="booking-body">
+
+            <div class="booking-info">
+
+                <div class="fw-semibold">
+
+                    <i class="bi bi-person-gear"></i>
+
+                    Selected Mechanic
+
+                </div>
+
+
+                <div class="mechanic-name mt-1">
+
+                    {{ mechanic.shop_name }}
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+
+
+                    <button
+                        type="submit"
+                        class="confirm-btn"
+                    >
+
+                        <i class="bi bi-check-circle me-2"></i>
+
+                        Confirm Booking
+
+                    </button>
+
+
+                    <a
+                        href="/mechanics/"
+                        class="btn btn-outline-secondary cancel-btn"
+                    >
+
+                        <i class="bi bi-arrow-left me-2"></i>
+
+                        Back to Mechanics
+
+                    </a>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

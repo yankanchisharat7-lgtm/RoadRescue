@@ -1,0 +1,739 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+    <div class="text-center mb-5">
+
+        <div class="d-inline-flex align-items-center justify-content-center
+                    bg-primary bg-opacity-10 rounded-circle mb-3"
+             style="width: 70px; height: 70px;">
+
+            <i class="bi bi-calendar-check-fill text-primary fs-2"></i>
+
+        </div>
+
+        <h1 class="fw-bold text-dark mb-2">
+            My Bookings
+        </h1>
+
+        <p class="text-muted mb-0">
+            View and manage all your RoadRescue bookings.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         STATISTICS
+    =========================================== -->
+
+    <div class="row g-4 mb-5">
+
+
+        <!-- Total -->
+
+        <div class="col-md-4">
+
+            <div class="card booking-stat-card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon total-icon">
+                            <i class="bi bi-journal-check"></i>
+                        </div>
+
+                        <div class="ms-3">
+
+                            <p class="text-muted mb-1 small fw-semibold">
+                                TOTAL BOOKINGS
+                            </p>
+
+                            <h2 class="fw-bold text-primary mb-0">
+                                {{ total_bookings }}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pending -->
+
+        <div class="col-md-4">
+
+            <div class="card booking-stat-card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon pending-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+
+                        <div class="ms-3">
+
+                            <p class="text-muted mb-1 small fw-semibold">
+                                PENDING BOOKINGS
+                            </p>
+
+                            <h2 class="fw-bold text-warning mb-0">
+                                {{ pending_bookings }}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Completed -->
+
+        <div class="col-md-4">
+
+            <div class="card booking-stat-card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon completed-icon">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+
+                        <div class="ms-3">
+
+                            <p class="text-muted mb-1 small fw-semibold">
+                                COMPLETED BOOKINGS
+                            </p>
+
+                            <h2 class="fw-bold text-success mb-0">
+                                {{ completed_bookings }}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         BOOKINGS
+    =========================================== -->
+
+    {% if bookings %}
+
+        {% for booking in bookings %}
+
+        <div class="card booking-card border-0 shadow-sm rounded-4 mb-4">
+
+
+            <!-- ==================================
+                 CARD HEADER
+            =================================== -->
+
+            <div class="card-header booking-header border-0 p-4">
+
+                <div class="d-flex justify-content-between
+                            align-items-center flex-wrap gap-3">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="booking-icon me-3">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted d-block">
+                                ROADSIDE ASSISTANCE
+                            </small>
+
+                            <h5 class="mb-0 fw-bold">
+                                Booking #{{ booking.id }}
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    {% if booking.status == "Pending" %}
+
+                        <span class="badge status-pending">
+                            <i class="bi bi-clock-fill me-1"></i>
+                            Pending
+                        </span>
+
+                    {% elif booking.status == "Accepted" %}
+
+                        <span class="badge status-accepted">
+                            <i class="bi bi-check-circle-fill me-1"></i>
+                            Accepted
+                        </span>
+
+                    {% elif booking.status == "On The Way" %}
+
+                        <span class="badge status-way">
+                            <i class="bi bi-car-front-fill me-1"></i>
+                            On The Way
+                        </span>
+
+                    {% elif booking.status == "Completed" %}
+
+                        <span class="badge status-completed">
+                            <i class="bi bi-check-circle-fill me-1"></i>
+                            Completed
+                        </span>
+
+                    {% elif booking.status == "Cancelled" %}
+
+                        <span class="badge status-cancelled">
+                            <i class="bi bi-x-circle-fill me-1"></i>
+                            Cancelled
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge status-default">
+                            {{ booking.status }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 CARD BODY
+            =================================== -->
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+
+                    <!-- Mechanic -->
+
+                    <div class="col-md-6">
+
+                        <div class="information-section">
+
+                            <div class="section-title">
+
+                                <div class="section-icon">
+                                    <i class="bi bi-person-workspace"></i>
+                                </div>
+
+                                <span>
+                                    Mechanic
+                                </span>
+
+                            </div>
+
+                            <div class="information-content">
+
+                                <p>
+                                    <span>Shop</span>
+                                    <strong>{{ booking.mechanic.shop_name }}</strong>
+                                </p>
+
+                                <p>
+                                    <span>Name</span>
+                                    <strong>{{ booking.mechanic.name }}</strong>
+                                </p>
+
+                                <p class="mb-0">
+                                    <span>Phone</span>
+                                    <strong>{{ booking.mechanic.phone }}</strong>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Vehicle -->
+
+                    <div class="col-md-6">
+
+                        <div class="information-section">
+
+                            <div class="section-title">
+
+                                <div class="section-icon">
+                                    <i class="bi bi-car-front-fill"></i>
+                                </div>
+
+                                <span>
+                                    Vehicle Information
+                                </span>
+
+                            </div>
+
+                            <div class="information-content">
+
+                                <p>
+                                    <span>Vehicle</span>
+                                    <strong>{{ booking.vehicle_type }}</strong>
+                                </p>
+
+                                <p class="mb-0">
+                                    <span>Problem</span>
+                                    <strong>{{ booking.problem }}</strong>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="col-md-6">
+
+                        <div class="information-section">
+
+                            <div class="section-title">
+
+                                <div class="section-icon">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+
+                                <span>
+                                    Location
+                                </span>
+
+                            </div>
+
+                            <div class="information-content">
+
+                                <p class="mb-0">
+                                    {{ booking.customer_location }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Date -->
+
+                    <div class="col-md-6">
+
+                        <div class="information-section">
+
+                            <div class="section-title">
+
+                                <div class="section-icon">
+                                    <i class="bi bi-calendar-event-fill"></i>
+                                </div>
+
+                                <span>
+                                    Booking Date
+                                </span>
+
+                            </div>
+
+                            <div class="information-content">
+
+                                <p class="mb-0">
+                                    {{ booking.booking_date|date:"d M Y, h:i A" }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 CARD FOOTER / BUTTONS
+            =================================== -->
+
+            <div class="card-footer bg-white border-0 p-4 pt-0">
+
+                <div class="d-flex flex-wrap gap-2">
+
+
+                    <!-- Details -->
+
+                    <a
+                        href="{% url 'booking_detail' booking.id %}"
+                        class="btn btn-primary action-btn">
+
+                        <i class="bi bi-eye-fill me-1"></i>
+                        View Details
+
+                    </a>
+
+
+                    <!-- Invoice -->
+
+                    <a
+                        href="{% url 'download_invoice' booking.id %}"
+                        class="btn btn-outline-dark action-btn">
+
+                        <i class="bi bi-file-earmark-pdf-fill me-1"></i>
+                        Invoice
+
+                    </a>
+
+
+                    <!-- Cancel -->
+
+                    {% if booking.status == "Pending" %}
+
+                    <a
+                        href="{% url 'cancel_booking' booking.id %}"
+                        class="btn btn-outline-danger action-btn">
+
+                        <i class="bi bi-x-circle-fill me-1"></i>
+                        Cancel Booking
+
+                    </a>
+
+                    {% endif %}
+
+
+                    <!-- Review -->
+
+                    {% if booking.status == "Completed" %}
+
+                    <a
+                        href="{% url 'add_review' booking.mechanic.id %}"
+                        class="btn btn-warning action-btn">
+
+                        <i class="bi bi-star-fill me-1"></i>
+                        Write Review
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+    {% else %}
+
+
+        <!-- ==================================
+             NO BOOKINGS
+        =================================== -->
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="card-body text-center py-5 px-4">
+
+                <div class="empty-icon mb-3">
+
+                    <i class="bi bi-calendar-x"></i>
+
+                </div>
+
+                <h3 class="fw-bold mt-3">
+                    No Bookings Yet
+                </h3>
+
+                <p class="text-muted mb-4">
+                    You haven't made any roadside assistance bookings.
+                </p>
+
+                <a
+                    href="{% url 'mechanic_list' %}"
+                    class="btn btn-primary px-4 py-2 rounded-3 fw-semibold">
+
+                    <i class="bi bi-tools me-2"></i>
+                    Find a Mechanic
+
+                </a>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- ==========================================
+     PAGE STYLING
+=========================================== -->
+
+<style>
+
+    /* ================================
+       STATISTICS
+    ================================= */
+
+    .booking-stat-card {
+        transition: all 0.2s ease;
+    }
+
+    .booking-stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+    }
+
+    .total-icon {
+        background: rgba(13, 110, 253, 0.10);
+        color: #0d6efd;
+    }
+
+    .pending-icon {
+        background: rgba(255, 193, 7, 0.14);
+        color: #d99a00;
+    }
+
+    .completed-icon {
+        background: rgba(25, 135, 84, 0.10);
+        color: #198754;
+    }
+
+
+    /* ================================
+       BOOKING CARD
+    ================================= */
+
+    .booking-card {
+        overflow: hidden;
+        transition: all 0.2s ease;
+    }
+
+    .booking-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .booking-header {
+        background: #ffffff;
+        border-bottom: 1px solid #eef0f4 !important;
+    }
+
+    .booking-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: rgba(13, 110, 253, 0.10);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+
+    /* ================================
+       STATUS BADGES
+    ================================= */
+
+    .booking-header .badge {
+        padding: 8px 13px;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-accepted {
+        background: #cfe2ff;
+        color: #084298;
+    }
+
+    .status-way {
+        background: #cff4fc;
+        color: #055160;
+    }
+
+    .status-completed {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    .status-default {
+        background: #e2e3e5;
+        color: #41464b;
+    }
+
+
+    /* ================================
+       INFORMATION SECTIONS
+    ================================= */
+
+    .information-section {
+        background: #f8f9fb;
+        border-radius: 12px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #0d6efd;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .section-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: rgba(13, 110, 253, 0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .information-content p {
+        margin-bottom: 8px;
+        color: #495057;
+        line-height: 1.5;
+    }
+
+    .information-content p span {
+        display: inline-block;
+        min-width: 75px;
+        color: #6c757d;
+        font-size: 0.88rem;
+    }
+
+    .information-content strong {
+        color: #212529;
+        font-weight: 600;
+    }
+
+
+    /* ================================
+       ACTION BUTTONS
+    ================================= */
+
+    .action-btn {
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-1px);
+    }
+
+
+    /* ================================
+       EMPTY STATE
+    ================================= */
+
+    .empty-icon {
+        width: 80px;
+        height: 80px;
+        margin: auto;
+        border-radius: 20px;
+        background: rgba(13, 110, 253, 0.08);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 576px) {
+
+        .booking-header {
+            padding: 18px !important;
+        }
+
+        .booking-card .card-body {
+            padding: 18px !important;
+        }
+
+        .booking-card .card-footer {
+            padding: 0 18px 18px !important;
+        }
+
+        .action-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+

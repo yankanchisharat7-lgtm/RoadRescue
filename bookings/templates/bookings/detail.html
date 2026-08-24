@@ -1,0 +1,1103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+    <div class="text-center mb-5">
+
+        <div class="d-inline-flex align-items-center justify-content-center
+                    bg-primary bg-opacity-10 rounded-circle mb-3"
+             style="width: 70px; height: 70px;">
+
+            <i class="bi bi-receipt-cutoff text-primary fs-2"></i>
+
+        </div>
+
+        <h1 class="fw-bold text-dark mb-2">
+            Booking Details
+        </h1>
+
+        <p class="text-muted mb-0">
+            Complete information about your RoadRescue service request.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         MAIN BOOKING CARD
+    =========================================== -->
+
+    <div class="card booking-main-card border-0 shadow-sm rounded-4">
+
+
+        <!-- ======================================
+             BOOKING HEADER
+        ======================================= -->
+
+        <div class="card-header booking-top-header border-0 p-4">
+
+            <div class="d-flex justify-content-between
+                        align-items-center flex-wrap gap-3">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="booking-number-icon me-3">
+
+                        <i class="bi bi-car-front-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small class="text-muted d-block">
+                            ROADSIDE ASSISTANCE
+                        </small>
+
+                        <h4 class="mb-0 fw-bold">
+                            Booking #{{ booking.id }}
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Status -->
+
+                {% if booking.status == "Pending" %}
+
+                    <span class="badge booking-status status-pending">
+                        <i class="bi bi-clock-fill me-1"></i>
+                        Pending
+                    </span>
+
+                {% elif booking.status == "Accepted" %}
+
+                    <span class="badge booking-status status-accepted">
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        Accepted
+                    </span>
+
+                {% elif booking.status == "On The Way" %}
+
+                    <span class="badge booking-status status-way">
+                        <i class="bi bi-car-front-fill me-1"></i>
+                        On The Way
+                    </span>
+
+                {% elif booking.status == "Completed" %}
+
+                    <span class="badge booking-status status-completed">
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        Completed
+                    </span>
+
+                {% elif booking.status == "Cancelled" %}
+
+                    <span class="badge booking-status status-cancelled">
+                        <i class="bi bi-x-circle-fill me-1"></i>
+                        Cancelled
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             BOOKING BODY
+        ======================================= -->
+
+        <div class="card-body p-4 p-lg-5">
+
+            <div class="row g-4">
+
+
+                <!-- ==================================
+                     CUSTOMER INFORMATION
+                =================================== -->
+
+                <div class="col-md-6">
+
+                    <div class="information-card h-100">
+
+                        <div class="information-heading">
+
+                            <div class="information-icon">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5 class="fw-bold mb-0">
+                                    Customer Information
+                                </h5>
+
+                                <small class="text-muted">
+                                    Customer details
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-details">
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Name
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.customer_name }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Phone
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.customer_phone }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Location
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.customer_location }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     MECHANIC INFORMATION
+                =================================== -->
+
+                <div class="col-md-6">
+
+                    <div class="information-card h-100">
+
+                        <div class="information-heading">
+
+                            <div class="information-icon">
+                                <i class="bi bi-tools"></i>
+                            </div>
+
+                            <div>
+                                <h5 class="fw-bold mb-0">
+                                    Mechanic Information
+                                </h5>
+
+                                <small class="text-muted">
+                                    Service provider details
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-details">
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Shop
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.mechanic.shop_name }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Mechanic
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.mechanic.name }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Phone
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.mechanic.phone }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Location
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.mechanic.location }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Rating
+                                </span>
+
+                                <span class="detail-value rating-value">
+                                    ⭐ {{ booking.mechanic.rating }}/5
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     VEHICLE INFORMATION
+                =================================== -->
+
+                <div class="col-md-6">
+
+                    <div class="information-card h-100">
+
+                        <div class="information-heading">
+
+                            <div class="information-icon">
+                                <i class="bi bi-car-front-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5 class="fw-bold mb-0">
+                                    Vehicle Information
+                                </h5>
+
+                                <small class="text-muted">
+                                    Vehicle service details
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-details">
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Vehicle Type
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.vehicle_type }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Problem
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.problem }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     BOOKING INFORMATION
+                =================================== -->
+
+                <div class="col-md-6">
+
+                    <div class="information-card h-100">
+
+                        <div class="information-heading">
+
+                            <div class="information-icon">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5 class="fw-bold mb-0">
+                                    Booking Information
+                                </h5>
+
+                                <small class="text-muted">
+                                    Service request details
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-details">
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Booking ID
+                                </span>
+
+                                <span class="detail-value">
+                                    RR-{{ booking.id }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Date
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.booking_date|date:"d M Y" }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row">
+
+                                <span class="detail-label">
+                                    Time
+                                </span>
+
+                                <span class="detail-value">
+                                    {{ booking.booking_date|date:"h:i A" }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-row align-items-center">
+
+                                <span class="detail-label">
+                                    Status
+                                </span>
+
+                                <span class="detail-value">
+
+                                    {% if booking.status == "Pending" %}
+
+                                        <span class="badge status-small status-pending">
+                                            Pending
+                                        </span>
+
+                                    {% elif booking.status == "Accepted" %}
+
+                                        <span class="badge status-small status-accepted">
+                                            Accepted
+                                        </span>
+
+                                    {% elif booking.status == "On The Way" %}
+
+                                        <span class="badge status-small status-way">
+                                            On The Way
+                                        </span>
+
+                                    {% elif booking.status == "Completed" %}
+
+                                        <span class="badge status-small status-completed">
+                                            Completed
+                                        </span>
+
+                                    {% elif booking.status == "Cancelled" %}
+
+                                        <span class="badge status-small status-cancelled">
+                                            Cancelled
+                                        </span>
+
+                                    {% endif %}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOOKING PROGRESS
+            ======================================= -->
+
+            {% if booking.status != "Cancelled" %}
+
+            <div class="section-divider"></div>
+
+            <div class="text-center mb-4">
+
+                <div class="progress-title-icon">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </div>
+
+                <h4 class="fw-bold mb-1">
+                    Booking Progress
+                </h4>
+
+                <p class="text-muted small mb-0">
+                    Track the current status of your service request
+                </p>
+
+            </div>
+
+
+            <div class="row g-3">
+
+
+                <!-- Pending -->
+
+                <div class="col-md-3">
+
+                    {% if booking.status == "Pending" %}
+
+                        <div class="progress-step active-pending">
+
+                            <i class="bi bi-clock-fill"></i>
+
+                            <span>
+                                Pending
+                            </span>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="progress-step completed-step">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Pending
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Accepted -->
+
+                <div class="col-md-3">
+
+                    {% if booking.status == "Accepted" %}
+
+                        <div class="progress-step active-accepted">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Accepted
+                            </span>
+
+                        </div>
+
+                    {% elif booking.status == "On The Way" or booking.status == "Completed" %}
+
+                        <div class="progress-step completed-step">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Accepted
+                            </span>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="progress-step inactive-step">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            <span>
+                                Accepted
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- On The Way -->
+
+                <div class="col-md-3">
+
+                    {% if booking.status == "On The Way" %}
+
+                        <div class="progress-step active-way">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                            <span>
+                                On The Way
+                            </span>
+
+                        </div>
+
+                    {% elif booking.status == "Completed" %}
+
+                        <div class="progress-step completed-step">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                On The Way
+                            </span>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="progress-step inactive-step">
+
+                            <i class="bi bi-car-front"></i>
+
+                            <span>
+                                On The Way
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Completed -->
+
+                <div class="col-md-3">
+
+                    {% if booking.status == "Completed" %}
+
+                        <div class="progress-step active-completed">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Completed
+                            </span>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="progress-step inactive-step">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            <span>
+                                Completed
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- ======================================
+                 CANCELLED MESSAGE
+            ======================================= -->
+
+            {% if booking.status == "Cancelled" %}
+
+            <div class="cancelled-box mt-4">
+
+                <div class="cancelled-icon">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <h5 class="fw-bold mb-1">
+                        Booking Cancelled
+                    </h5>
+
+                    <p class="mb-0">
+                        This RoadRescue booking has been cancelled.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- ======================================
+                 ACTION BUTTONS
+            ======================================= -->
+
+            <div class="action-section mt-5 pt-4">
+
+                <div class="d-flex justify-content-center
+                            flex-wrap gap-2">
+
+
+                    <!-- Back -->
+
+                    <a
+                        href="{% url 'my_bookings' %}"
+                        class="btn btn-outline-secondary action-btn">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+
+                        Back to My Bookings
+
+                    </a>
+
+
+                    <!-- Invoice -->
+
+                    <a
+                        href="{% url 'download_invoice' booking.id %}"
+                        class="btn btn-dark action-btn">
+
+                        <i class="bi bi-file-earmark-pdf-fill me-1"></i>
+
+                        Download Invoice
+
+                    </a>
+
+
+                    <!-- Review -->
+
+                    {% if booking.status == "Completed" %}
+
+                    <a
+                        href="{% url 'add_review' booking.mechanic.id %}"
+                        class="btn btn-warning action-btn">
+
+                        <i class="bi bi-star-fill me-1"></i>
+
+                        Write Review
+
+                    </a>
+
+                    {% endif %}
+
+
+                    <!-- Cancel -->
+
+                    {% if booking.status == "Pending" %}
+
+                    <a
+                        href="{% url 'cancel_booking' booking.id %}"
+                        class="btn btn-outline-danger action-btn">
+
+                        <i class="bi bi-x-circle-fill me-1"></i>
+
+                        Cancel Booking
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     PROFESSIONAL PAGE STYLING
+=========================================== -->
+
+<style>
+
+    /* ================================
+       MAIN CARD
+    ================================= */
+
+    .booking-main-card {
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+
+    /* ================================
+       BOOKING HEADER
+    ================================= */
+
+    .booking-top-header {
+        background: #ffffff;
+        border-bottom: 1px solid #eef0f4 !important;
+    }
+
+    .booking-number-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(13, 110, 253, 0.10);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+
+
+    /* ================================
+       STATUS BADGES
+    ================================= */
+
+    .booking-status {
+        padding: 9px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-accepted {
+        background: #cfe2ff;
+        color: #084298;
+    }
+
+    .status-way {
+        background: #cff4fc;
+        color: #055160;
+    }
+
+    .status-completed {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    .status-small {
+        padding: 6px 11px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+    }
+
+
+    /* ================================
+       INFORMATION CARDS
+    ================================= */
+
+    .information-card {
+        background: #f8f9fb;
+        border: 1px solid #eef0f4;
+        border-radius: 14px;
+        padding: 22px;
+        transition: all 0.2s ease;
+    }
+
+    .information-card:hover {
+        border-color: #dce3ed;
+        transform: translateY(-2px);
+    }
+
+
+    .information-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .information-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(13, 110, 253, 0.10);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+
+
+    /* ================================
+       DETAILS
+    ================================= */
+
+    .information-details {
+        border-top: 1px solid #e9ecef;
+        padding-top: 10px;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        color: #6c757d;
+        font-size: 0.88rem;
+        flex-shrink: 0;
+    }
+
+    .detail-value {
+        color: #212529;
+        font-weight: 600;
+        text-align: right;
+        word-break: break-word;
+    }
+
+    .rating-value {
+        color: #d99a00;
+    }
+
+
+    /* ================================
+       SECTION DIVIDER
+    ================================= */
+
+    .section-divider {
+        height: 1px;
+        background: #e9ecef;
+        margin: 45px 0 35px;
+    }
+
+
+    /* ================================
+       PROGRESS TITLE
+    ================================= */
+
+    .progress-title-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 10px;
+        border-radius: 12px;
+        background: rgba(13, 110, 253, 0.10);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* ================================
+       PROGRESS STEPS
+    ================================= */
+
+    .progress-step {
+        min-height: 70px;
+        border-radius: 12px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .active-pending {
+        background: #fff3cd;
+        color: #856404;
+        border-color: #ffe69c;
+    }
+
+    .active-accepted {
+        background: #cfe2ff;
+        color: #084298;
+        border-color: #9ec5fe;
+    }
+
+    .active-way {
+        background: #cff4fc;
+        color: #055160;
+        border-color: #9eeaf9;
+    }
+
+    .active-completed {
+        background: #d1e7dd;
+        color: #0f5132;
+        border-color: #a3cfbb;
+    }
+
+    .completed-step {
+        background: #f0f8f4;
+        color: #198754;
+        border-color: #d8eee2;
+    }
+
+    .inactive-step {
+        background: #f8f9fa;
+        color: #6c757d;
+        border-color: #e9ecef;
+    }
+
+
+    /* ================================
+       CANCELLED BOX
+    ================================= */
+
+    .cancelled-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        background: #fff5f5;
+        border: 1px solid #f1c1c5;
+        color: #842029;
+        border-radius: 14px;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .cancelled-icon {
+        font-size: 1.8rem;
+    }
+
+
+    /* ================================
+       ACTION BUTTONS
+    ================================= */
+
+    .action-section {
+        border-top: 1px solid #eef0f4;
+    }
+
+    .action-btn {
+        border-radius: 9px;
+        padding: 9px 16px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 576px) {
+
+        .booking-main-card .card-body {
+            padding: 22px !important;
+        }
+
+        .booking-top-header {
+            padding: 20px !important;
+        }
+
+        .detail-row {
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .detail-value {
+            text-align: left;
+        }
+
+        .progress-step {
+            min-height: 55px;
+        }
+
+        .action-btn {
+            width: 100%;
+        }
+
+        .cancelled-box {
+            text-align: center;
+            flex-direction: column;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+

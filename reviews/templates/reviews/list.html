@@ -1,0 +1,422 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* =========================================
+       REVIEWS PAGE
+    ========================================= */
+
+    .reviews-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 50px 20px 70px;
+    }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .reviews-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reviews-icon {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 20px;
+        border-radius: 20px;
+        background: #eaf3ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        box-shadow: 0 8px 22px rgba(13, 110, 253, 0.10);
+    }
+
+    .reviews-header h1 {
+        color: #0b1f3a;
+        font-size: 2.25rem;
+        font-weight: 900;
+        margin-bottom: 9px;
+    }
+
+    .reviews-header p {
+        color: #667085;
+        font-size: 15px;
+        margin: 0;
+    }
+
+
+    /* =========================================
+       REVIEW GRID
+    ========================================= */
+
+    .review-card {
+        height: 100%;
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 9px 28px rgba(11, 31, 58, 0.07);
+        transition: all 0.25s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(11, 31, 58, 0.11);
+    }
+
+    .review-card-body {
+        padding: 25px;
+    }
+
+
+    /* =========================================
+       CUSTOMER SECTION
+    ========================================= */
+
+    .customer-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        background: #edf5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+        flex-shrink: 0;
+    }
+
+    .customer-name {
+        color: #172b4d;
+        font-size: 15px;
+        font-weight: 800;
+        margin-bottom: 3px;
+    }
+
+    .mechanic-name {
+        color: #667085;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+
+    /* =========================================
+       RATING
+    ========================================= */
+
+    .rating-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        background: #fff6d8;
+        color: #8a6500;
+        border: 1px solid #ffe69c;
+        border-radius: 7px;
+        padding: 4px 8px;
+        font-size: 11px;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+    .rating-badge i {
+        font-size: 10px;
+    }
+
+
+    /* =========================================
+       DIVIDER
+    ========================================= */
+
+    .review-divider {
+        border: 0;
+        border-top: 1px solid #edf0f3;
+        margin: 20px 0;
+    }
+
+
+    /* =========================================
+       REVIEW TEXT
+    ========================================= */
+
+    .review-comment {
+        color: #344054;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.75;
+        margin-bottom: 20px;
+    }
+
+    .review-comment i {
+        color: #0d6efd;
+        margin-right: 5px;
+        font-size: 13px;
+    }
+
+
+    /* =========================================
+       DATE
+    ========================================= */
+
+    .review-date {
+        color: #8a96a6;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+    /* =========================================
+       EMPTY STATE
+    ========================================= */
+
+    .empty-reviews {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 20px;
+        padding: 65px 25px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(11, 31, 58, 0.07);
+    }
+
+    .empty-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 22px;
+        border-radius: 20px;
+        background: #f1f7ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+    }
+
+    .empty-reviews h4 {
+        color: #0b1f3a;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .empty-reviews p {
+        color: #667085;
+        font-size: 14px;
+        margin: 0;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 576px) {
+
+        .reviews-page {
+            padding: 35px 15px 50px;
+        }
+
+        .reviews-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .reviews-icon {
+            width: 65px;
+            height: 65px;
+            font-size: 28px;
+        }
+
+        .review-card-body {
+            padding: 21px;
+        }
+
+    }
+
+</style>
+
+
+<div class="reviews-page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <div class="reviews-header">
+
+
+        <div class="reviews-icon">
+
+            <i class="bi bi-star-fill"></i>
+
+        </div>
+
+
+        <h1>
+            Customer Reviews
+        </h1>
+
+
+        <p>
+            Real experiences from customers who used RoadRescue.
+        </p>
+
+
+    </div>
+
+
+    <!-- =========================================
+         REVIEWS
+    ========================================= -->
+
+    {% if reviews %}
+
+
+        <div class="row g-4">
+
+
+            {% for review in reviews %}
+
+
+                <div class="col-lg-6">
+
+
+                    <div class="review-card">
+
+
+                        <div class="review-card-body">
+
+
+                            <!-- CUSTOMER -->
+
+                            <div class="d-flex justify-content-between align-items-start gap-3">
+
+
+                                <div class="d-flex align-items-center gap-3">
+
+
+                                    <div class="customer-avatar">
+
+                                        <i class="bi bi-person-fill"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="customer-name">
+
+                                            {{ review.customer.username }}
+
+                                        </div>
+
+
+                                        <div class="mechanic-name">
+
+                                            <i class="bi bi-tools me-1"></i>
+
+                                            {{ review.mechanic.shop_name }}
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <!-- RATING -->
+
+                                <span class="rating-badge">
+
+                                    <i class="bi bi-star-fill"></i>
+
+                                    {{ review.rating }}/5
+
+                                </span>
+
+
+                            </div>
+
+
+                            <hr class="review-divider">
+
+
+                            <!-- COMMENT -->
+
+                            <p class="review-comment">
+
+                                <i class="bi bi-chat-quote-fill"></i>
+
+                                {{ review.comment }}
+
+                            </p>
+
+
+                            <!-- DATE -->
+
+                            <div class="review-date">
+
+                                <i class="bi bi-clock"></i>
+
+                                {{ review.created_at|date:"d M Y, h:i A" }}
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- EMPTY -->
+
+        <div class="empty-reviews">
+
+
+            <div class="empty-icon">
+
+                <i class="bi bi-star"></i>
+
+            </div>
+
+
+            <h4>
+                No Reviews Yet
+            </h4>
+
+
+            <p>
+                Customer reviews will appear here after completed bookings.
+            </p>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}

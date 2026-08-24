@@ -1,0 +1,943 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ============================= */
+    /* PAGE WRAPPER */
+    /* ============================= */
+
+    .mechanics-wrapper {
+        max-width: 1250px;
+        margin: 0 auto;
+        padding: 40px 15px 60px;
+    }
+
+
+    /* ============================= */
+    /* PAGE HEADER */
+    /* ============================= */
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .page-header-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 18px;
+        border-radius: 20px;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+    }
+
+    .page-header h1 {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #212529;
+        margin-bottom: 8px;
+    }
+
+    .page-header p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+
+    /* ============================= */
+    /* SEARCH CARD */
+    /* ============================= */
+
+    .filter-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        margin-bottom: 40px;
+    }
+
+    .filter-header {
+        padding: 20px 25px 0;
+    }
+
+    .filter-title {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: #212529;
+    }
+
+    .filter-subtitle {
+        font-size: 13px;
+        color: #6c757d;
+    }
+
+    .filter-body {
+        padding: 20px 25px 25px;
+    }
+
+    .filter-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 7px;
+    }
+
+    .filter-card .form-control,
+    .filter-card .form-select {
+        min-height: 45px;
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+    }
+
+    .filter-card .form-control:focus,
+    .filter-card .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.1);
+    }
+
+    .search-btn {
+        min-height: 45px;
+        border-radius: 10px;
+        font-weight: 700;
+    }
+
+    .online-filter {
+        height: 45px;
+        display: flex;
+        align-items: center;
+    }
+
+    .online-filter .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    .online-filter .form-check-label {
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+
+    /* ============================= */
+    /* MECHANIC CARD */
+    /* ============================= */
+
+    .mechanic-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+        box-shadow: 0 7px 25px rgba(0, 0, 0, 0.06);
+        transition: all 0.25s ease;
+    }
+
+    .mechanic-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border-color: #d9e7ff;
+    }
+
+    .mechanic-card-body {
+        padding: 28px;
+        text-align: center;
+    }
+
+
+    /* ============================= */
+    /* MECHANIC PHOTO */
+    /* ============================= */
+
+    .mechanic-photo {
+        width: 135px;
+        height: 135px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.13);
+        margin-bottom: 18px;
+    }
+
+    .mechanic-placeholder {
+        width: 135px;
+        height: 135px;
+        border-radius: 50%;
+        margin: 0 auto 18px;
+        background: #f1f3f5;
+        border: 5px solid #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #adb5bd;
+        font-size: 65px;
+    }
+
+
+    /* ============================= */
+    /* MECHANIC NAME */
+    /* ============================= */
+
+    .shop-name {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #212529;
+        margin-bottom: 4px;
+    }
+
+    .mechanic-name {
+        color: #6c757d;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+
+    /* ============================= */
+    /* INFO BOX */
+    /* ============================= */
+
+    .mechanic-info {
+        border: 1px solid #edf0f2;
+        border-radius: 13px;
+        overflow: hidden;
+        text-align: left;
+        margin-bottom: 18px;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        padding: 11px 13px;
+        border-bottom: 1px solid #f1f3f5;
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+    .info-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    .info-content {
+        font-size: 13px;
+        color: #495057;
+    }
+
+    .info-content strong {
+        color: #212529;
+    }
+
+
+    /* ============================= */
+    /* RATING */
+    /* ============================= */
+
+    .rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        background: #fff3cd;
+        color: #856404;
+        padding: 4px 8px;
+        border-radius: 7px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+
+    /* ============================= */
+    /* STATUS */
+    /* ============================= */
+
+    .status-available {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #d1e7dd;
+        color: #0f5132;
+        border-radius: 50px;
+        padding: 7px 13px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .status-offline {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f8d7da;
+        color: #842029;
+        border-radius: 50px;
+        padding: 7px 13px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+
+    /* ============================= */
+    /* BUTTONS */
+    /* ============================= */
+
+    .mechanic-actions {
+        border-top: 1px solid #edf0f2;
+        padding-top: 18px;
+    }
+
+    .mechanic-actions .btn {
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+
+    /* ============================= */
+    /* EMPTY STATE */
+    /* ============================= */
+
+    .empty-state {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 20px;
+        padding: 55px 25px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .empty-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: #fff3cd;
+        color: #856404;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 18px;
+        font-size: 28px;
+    }
+
+    .empty-state h3 {
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .empty-state p {
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
+
+    @media (max-width: 768px) {
+
+        .mechanics-wrapper {
+            padding-top: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 1.9rem;
+        }
+
+        .page-header-icon {
+            width: 75px;
+            height: 75px;
+            font-size: 35px;
+        }
+
+        .filter-body {
+            padding: 18px;
+        }
+
+        .filter-header {
+            padding: 18px 18px 0;
+        }
+
+        .mechanic-card-body {
+            padding: 24px 20px;
+        }
+
+    }
+
+</style>
+
+
+<div class="mechanics-wrapper">
+
+
+    <!-- ============================= -->
+    <!-- PAGE HEADER -->
+    <!-- ============================= -->
+
+    <div class="page-header">
+
+        <div class="page-header-icon">
+
+            <i class="bi bi-tools"></i>
+
+        </div>
+
+        <h1>
+            Available Mechanics
+        </h1>
+
+        <p>
+            Find trusted roadside assistance and professional mechanics near you.
+        </p>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- SEARCH & FILTER -->
+    <!-- ============================= -->
+
+    <div class="filter-card">
+
+
+        <div class="filter-header">
+
+            <div class="filter-title">
+
+                <i class="bi bi-funnel-fill text-primary me-2"></i>
+                Find the Right Mechanic
+
+            </div>
+
+            <div class="filter-subtitle mt-1">
+
+                Search and filter mechanics based on your requirements.
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-body">
+
+            <form method="GET">
+
+                <div class="row g-3">
+
+
+                    <!-- SHOP SEARCH -->
+
+                    <div class="col-lg-3 col-md-6">
+
+                        <label class="filter-label">
+                            Shop Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search shop..."
+                            value="{{ request.GET.search }}"
+                        >
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="filter-label">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            name="location"
+                            class="form-control"
+                            placeholder="Enter location"
+                            value="{{ request.GET.location }}"
+                        >
+
+                    </div>
+
+
+                    <!-- VEHICLE -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="filter-label">
+                            Vehicle Type
+                        </label>
+
+                        <select
+                            name="vehicle"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Vehicles
+                            </option>
+
+                            <option
+                                value="Bike"
+                                {% if request.GET.vehicle == "Bike" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Bike
+                            </option>
+
+                            <option
+                                value="Car"
+                                {% if request.GET.vehicle == "Car" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Car
+                            </option>
+
+                            <option
+                                value="Truck"
+                                {% if request.GET.vehicle == "Truck" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Truck
+                            </option>
+
+                            <option
+                                value="EV"
+                                {% if request.GET.vehicle == "EV" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Electric Vehicle
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- RATING -->
+
+                    <div class="col-lg-2 col-md-6">
+
+                        <label class="filter-label">
+                            Minimum Rating
+                        </label>
+
+                        <select
+                            name="rating"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                Any Rating
+                            </option>
+
+                            <option
+                                value="5"
+                                {% if request.GET.rating == "5" %}
+                                    selected
+                                {% endif %}
+                            >
+                                ★★★★★
+                            </option>
+
+                            <option
+                                value="4"
+                                {% if request.GET.rating == "4" %}
+                                    selected
+                                {% endif %}
+                            >
+                                ★★★★ & Above
+                            </option>
+
+                            <option
+                                value="3"
+                                {% if request.GET.rating == "3" %}
+                                    selected
+                                {% endif %}
+                            >
+                                ★★★ & Above
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ONLINE -->
+
+                    <div class="col-lg-1 col-md-6">
+
+                        <label class="filter-label">
+                            Status
+                        </label>
+
+                        <div class="online-filter">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="available"
+                                value="1"
+                                id="availableCheck"
+                                {% if request.GET.available %}
+                                    checked
+                                {% endif %}
+                            >
+
+                            <label
+                                class="form-check-label"
+                                for="availableCheck"
+                            >
+                                Online
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SEARCH BUTTON -->
+
+                    <div class="col-lg-2 col-md-6 d-flex align-items-end">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100 search-btn"
+                        >
+
+                            <i class="bi bi-search me-2"></i>
+                            Search
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- MECHANIC CARDS -->
+    <!-- ============================= -->
+
+    <div class="row g-4">
+
+
+        {% for mechanic in mechanics %}
+
+
+            <div class="col-xl-4 col-lg-4 col-md-6">
+
+
+                <div class="mechanic-card">
+
+
+                    <div class="mechanic-card-body">
+
+
+                        <!-- ============================= -->
+                        <!-- PROFILE PHOTO -->
+                        <!-- ============================= -->
+
+                        {% if mechanic.photo %}
+
+                            <img
+                                src="{{ mechanic.photo.url }}"
+                                alt="{{ mechanic.shop_name }}"
+                                class="mechanic-photo"
+                            >
+
+                        {% else %}
+
+                            <div class="mechanic-placeholder">
+
+                                <i class="bi bi-person-fill"></i>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- ============================= -->
+                        <!-- SHOP INFORMATION -->
+                        <!-- ============================= -->
+
+                        <h4 class="shop-name">
+
+                            {{ mechanic.shop_name }}
+
+                        </h4>
+
+
+                        <div class="mechanic-name">
+
+                            {{ mechanic.name }}
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- INFORMATION -->
+                        <!-- ============================= -->
+
+                        <div class="mechanic-info">
+
+
+                            <!-- LOCATION -->
+
+                            <div class="info-item">
+
+                                <div class="info-icon">
+
+                                    <i class="bi bi-geo-alt"></i>
+
+                                </div>
+
+                                <div class="info-content">
+
+                                    <strong>Location</strong><br>
+
+                                    {{ mechanic.location }}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- VEHICLE -->
+
+                            <div class="info-item">
+
+                                <div class="info-icon">
+
+                                    <i class="bi bi-car-front"></i>
+
+                                </div>
+
+                                <div class="info-content">
+
+                                    <strong>Vehicle</strong><br>
+
+                                    {{ mechanic.vehicle_type }}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EXPERIENCE -->
+
+                            <div class="info-item">
+
+                                <div class="info-icon">
+
+                                    <i class="bi bi-award"></i>
+
+                                </div>
+
+                                <div class="info-content">
+
+                                    <strong>Experience</strong><br>
+
+                                    {{ mechanic.experience }} Years
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- RATING -->
+
+                            <div class="info-item">
+
+                                <div class="info-icon">
+
+                                    <i class="bi bi-star-fill"></i>
+
+                                </div>
+
+                                <div class="info-content">
+
+                                    <strong>Rating</strong><br>
+
+                                    <span class="rating">
+
+                                        ★ {{ mechanic.rating }}/5
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- AVAILABILITY -->
+                        <!-- ============================= -->
+
+                        <div class="mb-3">
+
+                            {% if mechanic.available %}
+
+                                <span class="status-available">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Available Now
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-offline">
+
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Currently Offline
+
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- ACTION BUTTONS -->
+                        <!-- ============================= -->
+
+                        <div class="mechanic-actions">
+
+
+                            <div class="d-grid gap-2">
+
+
+                                <a
+                                    href="{% url 'mechanic_detail' mechanic.id %}"
+                                    class="btn btn-outline-primary"
+                                >
+
+                                    <i class="bi bi-eye me-2"></i>
+                                    View Details
+
+                                </a>
+
+
+                                {% if mechanic.available %}
+
+                                    <a
+                                        href="{% url 'book_mechanic' mechanic.id %}"
+                                        class="btn btn-success"
+                                    >
+
+                                        <i class="bi bi-calendar-check me-2"></i>
+                                        Book Mechanic
+
+                                    </a>
+
+                                {% else %}
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        disabled
+                                    >
+
+                                        <i class="bi bi-person-x me-2"></i>
+                                        Currently Offline
+
+                                    </button>
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <!-- ============================= -->
+            <!-- NO MECHANICS -->
+            <!-- ============================= -->
+
+            <div class="col-12">
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i class="bi bi-search"></i>
+
+                    </div>
+
+
+                    <h3>
+                        No Mechanics Found
+                    </h3>
+
+
+                    <p>
+                        We couldn't find any mechanics matching your search.
+                        Try changing your filters or search criteria.
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,403 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ============================= */
+    /* PAGE */
+    /* ============================= */
+
+    .success-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 55px 15px 70px;
+    }
+
+
+    /* ============================= */
+    /* SUCCESS CARD */
+    /* ============================= */
+
+    .success-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* ============================= */
+    /* TOP SECTION */
+    /* ============================= */
+
+    .success-top {
+        background: linear-gradient(135deg, #198754, #146c43);
+        color: #ffffff;
+        padding: 45px 25px 40px;
+        text-align: center;
+    }
+
+    .success-icon {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #198754;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 22px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .success-icon i {
+        font-size: 50px;
+    }
+
+    .success-top h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .success-top p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 15px;
+    }
+
+
+    /* ============================= */
+    /* CONTENT */
+    /* ============================= */
+
+    .success-body {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .success-message {
+        font-size: 1.05rem;
+        color: #495057;
+        line-height: 1.7;
+        margin-bottom: 8px;
+    }
+
+    .success-submessage {
+        color: #6c757d;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+
+    /* ============================= */
+    /* STATUS CARD */
+    /* ============================= */
+
+    .status-card {
+        background: #eef7ff;
+        border: 1px solid #cfe2ff;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 18px;
+    }
+
+    .status-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .status-card h5 {
+        color: #084298;
+        font-weight: 800;
+        margin-bottom: 7px;
+    }
+
+    .status-card p {
+        color: #495057;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .pending-badge {
+        display: inline-block;
+        background: #fff3cd;
+        color: #856404;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+
+    /* ============================= */
+    /* EMAIL MESSAGE */
+    /* ============================= */
+
+    .email-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 15px 18px;
+        color: #495057;
+        font-size: 14px;
+    }
+
+    .email-card i {
+        font-size: 20px;
+        color: #0d6efd;
+    }
+
+
+    /* ============================= */
+    /* ACTIONS */
+    /* ============================= */
+
+    .action-section {
+        border-top: 1px solid #e9ecef;
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+
+    .action-section .btn {
+        border-radius: 11px;
+        padding: 12px 22px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    /* ============================= */
+    /* FOOTER NOTE */
+    /* ============================= */
+
+    .success-footer {
+        margin-top: 25px;
+        color: #6c757d;
+        font-size: 13px;
+    }
+
+    .success-footer i {
+        color: #198754;
+    }
+
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
+
+    @media (max-width: 768px) {
+
+        .success-wrapper {
+            padding-top: 30px;
+        }
+
+        .success-top {
+            padding: 35px 20px;
+        }
+
+        .success-top h1 {
+            font-size: 1.8rem;
+        }
+
+        .success-body {
+            padding: 30px 20px;
+        }
+
+        .action-section .btn {
+            width: 100%;
+        }
+
+        .email-card {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+
+<div class="success-wrapper">
+
+
+    <!-- ============================= -->
+    <!-- SUCCESS CARD -->
+    <!-- ============================= -->
+
+    <div class="success-card">
+
+
+        <!-- ============================= -->
+        <!-- SUCCESS HEADER -->
+        <!-- ============================= -->
+
+        <div class="success-top">
+
+
+            <div class="success-icon">
+
+                <i class="bi bi-check-lg"></i>
+
+            </div>
+
+
+            <h1>
+                Booking Successful!
+            </h1>
+
+
+            <p>
+                Your roadside assistance request has been successfully submitted.
+            </p>
+
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- SUCCESS CONTENT -->
+        <!-- ============================= -->
+
+        <div class="success-body">
+
+
+            <p class="success-message">
+
+                Your booking has been created successfully.
+
+            </p>
+
+
+            <p class="success-submessage">
+
+                The selected mechanic will review your request and update
+                the booking status accordingly.
+
+            </p>
+
+
+            <!-- ============================= -->
+            <!-- BOOKING STATUS -->
+            <!-- ============================= -->
+
+            <div class="status-card">
+
+
+                <div class="status-icon">
+
+                    <i class="bi bi-clipboard-check"></i>
+
+                </div>
+
+
+                <h5>
+                    Booking Status
+                </h5>
+
+
+                <p>
+
+                    Your booking is currently
+
+                    <span class="pending-badge">
+                        Pending
+                    </span>
+
+                </p>
+
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- EMAIL CONFIRMATION -->
+            <!-- ============================= -->
+
+            <div class="email-card">
+
+                <i class="bi bi-envelope-check"></i>
+
+                <span>
+
+                    A booking confirmation has been sent to your
+                    registered email address.
+
+                </span>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- ACTION BUTTONS -->
+            <!-- ============================= -->
+
+            <div class="action-section">
+
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+
+
+                    <a
+                        href="{% url 'my_bookings' %}"
+                        class="btn btn-primary"
+                    >
+
+                        <i class="bi bi-clipboard2-check me-2"></i>
+                        View My Bookings
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'mechanic_list' %}"
+                        class="btn btn-outline-secondary"
+                    >
+
+                        <i class="bi bi-tools me-2"></i>
+                        Find Another Mechanic
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- FOOTER NOTE -->
+            <!-- ============================= -->
+
+            <div class="success-footer">
+
+                <i class="bi bi-shield-check me-1"></i>
+
+                RoadRescue will keep you updated about your booking.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,539 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ================================
+       REGISTRATION PAGE
+    ================================= */
+
+    .registration-wrapper {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+        background: #f5f7fb;
+    }
+
+    .registration-card {
+        width: 100%;
+        max-width: 650px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e9ecef;
+    }
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    .registration-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .registration-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0d6efd, #4f8df7);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .registration-header h2 {
+        font-weight: 700;
+        color: #172b4d;
+        margin-bottom: 8px;
+    }
+
+    .registration-header p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    /* ================================
+       ACCOUNT TYPE
+    ================================= */
+
+    .account-type-section {
+        margin-bottom: 28px;
+    }
+
+    .account-type-label {
+        display: block;
+        font-weight: 600;
+        color: #172b4d;
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    .account-type-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .account-type-card {
+        position: relative;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    .account-type-card input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .account-type-content {
+        border: 2px solid #d0d5dd;
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        transition: all 0.2s ease;
+        background: #ffffff;
+        min-height: 85px;
+    }
+
+    .account-type-card:hover .account-type-content {
+        border-color: #0d6efd;
+        background: #f8fbff;
+    }
+
+    .account-type-card input:checked + .account-type-content {
+        border-color: #0d6efd;
+        background: #f0f6ff;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.10);
+    }
+
+    .account-type-icon {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        border-radius: 10px;
+        background: #e8f1ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .mechanic-icon {
+        background: #fff3e6;
+        color: #e67e22;
+    }
+
+    .account-type-content strong {
+        display: block;
+        color: #172b4d;
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+
+    .account-type-content span {
+        display: block;
+        color: #667085;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* ================================
+       FORM FIELDS
+    ================================= */
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #344054;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d0d5dd;
+        border-radius: 9px;
+        font-size: 15px;
+        outline: none;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+        background: #ffffff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+    }
+
+    /* ================================
+       HELP TEXT
+    ================================= */
+
+    .help-text {
+        font-size: 12px;
+        color: #667085;
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
+    /* ================================
+       ERRORS
+    ================================= */
+
+    .error-text {
+        color: #dc3545;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .account-type-error {
+        margin-top: 8px;
+    }
+
+    /* ================================
+       PASSWORD RULES
+    ================================= */
+
+    .password-rules {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+    }
+
+    .password-rules p {
+        font-weight: 600;
+        color: #344054;
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .password-rules ul {
+        margin: 0;
+        padding-left: 18px;
+    }
+
+    .password-rules li {
+        color: #667085;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    /* ================================
+       REGISTER BUTTON
+    ================================= */
+
+    .register-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 5px;
+    }
+
+    .register-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(13, 110, 253, 0.25);
+    }
+
+    /* ================================
+       LOGIN LINK
+    ================================= */
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #667085;
+    }
+
+    .login-link a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 576px) {
+
+        .registration-card {
+            padding: 25px 20px;
+        }
+
+        .account-type-options {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+
+<div class="registration-wrapper">
+
+    <div class="registration-card">
+
+        <!-- ================================
+             HEADER
+        ================================= -->
+
+        <div class="registration-header">
+
+            <div class="registration-icon">
+                <i class="bi bi-person-plus-fill"></i>
+            </div>
+
+            <h2>Create Your Account</h2>
+
+            <p>
+                Choose your account type and create your RoadRescue account.
+            </p>
+
+        </div>
+
+
+        <!-- ================================
+             REGISTRATION FORM
+        ================================= -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- ================================
+                 ACCOUNT TYPE
+            ================================= -->
+
+            <div class="account-type-section">
+
+                <label class="account-type-label">
+                    Account Type
+                </label>
+
+                <div class="account-type-options">
+
+                    {% for choice in form.account_type %}
+
+                        {% if choice.data.value == "customer" %}
+
+                            <label class="account-type-card">
+
+                                {{ choice.tag }}
+
+                                <div class="account-type-content">
+
+                                    <div class="account-type-icon">
+
+                                        <i class="bi bi-person-fill"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Customer
+                                        </strong>
+
+                                        <span>
+                                            Book reliable roadside assistance.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+                        {% elif choice.data.value == "mechanic" %}
+
+                            <label class="account-type-card">
+
+                                {{ choice.tag }}
+
+                                <div class="account-type-content">
+
+                                    <div class="account-type-icon mechanic-icon">
+
+                                        <i class="bi bi-tools"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Mechanic
+                                        </strong>
+
+                                        <span>
+                                            Provide roadside assistance services.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% for error in form.account_type.errors %}
+
+                    <div class="error-text account-type-error">
+                        {{ error }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ================================
+                 OTHER FORM FIELDS
+            ================================= -->
+
+            {% for field in form %}
+
+                {% if field.name != "account_type" %}
+
+                    <div class="form-group">
+
+                        {{ field.label_tag }}
+
+                        {{ field }}
+
+
+                        {% if field.help_text %}
+
+                            <div class="help-text">
+                                {{ field.help_text|safe }}
+                            </div>
+
+                        {% endif %}
+
+
+                        {% for error in field.errors %}
+
+                            <div class="error-text">
+                                {{ error }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    {% if field.name == "password1" %}
+
+                        <div class="password-rules">
+
+                            <p>
+                                Password requirements
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    At least 8 characters
+                                </li>
+
+                                <li>
+                                    Cannot be too similar to your personal information
+                                </li>
+
+                                <li>
+                                    Cannot be a commonly used password
+                                </li>
+
+                                <li>
+                                    Cannot be entirely numeric
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+
+
+            <!-- ================================
+                 SUBMIT BUTTON
+            ================================= -->
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+
+                <i class="bi bi-person-check-fill me-2"></i>
+
+                Create Account
+
+            </button>
+
+        </form>
+
+
+        <!-- ================================
+             LOGIN LINK
+        ================================= -->
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login here
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

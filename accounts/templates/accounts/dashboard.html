@@ -1,0 +1,1487 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   ROADRESCUE PROFESSIONAL CUSTOMER DASHBOARD
+   ========================================================= */
+
+body {
+    background: #f4f7fb;
+}
+
+.dashboard-wrapper {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 45px 0 70px;
+}
+
+
+/* =========================================================
+   AUTOMOTIVE BACKGROUND
+   ========================================================= */
+
+.dashboard-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(13, 110, 253, 0.04);
+    pointer-events: none;
+}
+
+.dashboard-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: -200px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(25, 135, 84, 0.035);
+    pointer-events: none;
+}
+
+.automotive-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.automotive-bg i {
+    position: absolute;
+    color: #0d6efd;
+    opacity: 0.055;
+}
+
+.bg-car {
+    font-size: 280px;
+    right: -40px;
+    top: 120px;
+}
+
+.bg-gear {
+    font-size: 250px;
+    left: -70px;
+    top: 390px;
+}
+
+.bg-tools {
+    font-size: 220px;
+    right: 80px;
+    bottom: 190px;
+}
+
+.bg-ev {
+    font-size: 190px;
+    left: 100px;
+    bottom: 90px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.dashboard-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.dashboard-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    padding: 42px;
+    margin-bottom: 38px;
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #08162d,
+            #0d3c78
+        );
+
+    box-shadow:
+        0 15px 40px rgba(8, 35, 70, 0.18);
+}
+
+.dashboard-hero::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 50%;
+    right: -100px;
+    top: -130px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.11);
+    border: 1px solid rgba(255,255,255,0.14);
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+
+    margin-bottom: 18px;
+}
+
+.dashboard-hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.dashboard-hero p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 0;
+    font-size: 15px;
+    max-width: 650px;
+}
+
+.hero-icon {
+    position: absolute;
+    right: 55px;
+    bottom: 15px;
+
+    font-size: 155px;
+
+    color: rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.section-title h5 {
+    margin: 0;
+    font-weight: 700;
+    color: #172b4d;
+    font-size: 20px;
+}
+
+.section-title span {
+    color: #667085;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   STATISTICS CARDS
+   ========================================================= */
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid #e1e7ef;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.98);
+
+    padding: 25px;
+
+    min-height: 185px;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 6px 22px rgba(16, 24, 40, 0.055);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 32px rgba(16, 24, 40, 0.11);
+}
+
+
+/* Large icon box like the reference image */
+
+.stat-icon {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 29px;
+
+    margin-bottom: 20px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   STAT ICON COLORS
+   ========================================================= */
+
+.icon-blue {
+    background: #e1edff;
+    color: #0756c9;
+}
+
+.icon-yellow {
+    background: #fff2cf;
+    color: #a66d00;
+}
+
+.icon-cyan {
+    background: #def7fb;
+    color: #087c91;
+}
+
+.icon-green {
+    background: #e2f5e9;
+    color: #157347;
+}
+
+.icon-red {
+    background: #ffe6e6;
+    color: #b42318;
+}
+
+.icon-purple {
+    background: #eee7ff;
+    color: #6941c6;
+}
+
+
+/* =========================================================
+   STAT NUMBERS
+   ========================================================= */
+
+.stat-number {
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #172b4d;
+
+    line-height: 1.1;
+
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 13px;
+
+    color: #667085;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions {
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e7ef;
+
+    box-shadow:
+        0 7px 25px rgba(16, 24, 40, 0.06);
+
+    padding: 28px;
+
+    margin-top: 38px;
+    margin-bottom: 38px;
+}
+
+
+/* Action card */
+
+.action-card {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 17px 18px;
+
+    min-height: 92px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    border: 1px solid #dfe5ed;
+
+    background: #ffffff;
+
+    color: #172b4d;
+
+    transition: all 0.22s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+
+    color: #0756c9;
+
+    border-color: #9fc2f8;
+
+    box-shadow:
+        0 9px 22px rgba(13, 110, 253, 0.11);
+}
+
+
+/* Large action icon */
+
+.action-icon {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+
+    background: #e1edff;
+
+    color: #0756c9;
+
+    flex-shrink: 0;
+}
+
+
+/* Different action icon colors */
+
+.action-card:nth-child(2) .action-icon {
+    background: #e4f7ed;
+    color: #157347;
+}
+
+.action-card:nth-child(3) .action-icon {
+    background: #fff2cf;
+    color: #a66d00;
+}
+
+
+.action-text {
+    flex-grow: 1;
+}
+
+.action-text strong {
+    display: block;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.action-text small {
+    color: #667085;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RECENT BOOKINGS
+   ========================================================= */
+
+.booking-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e7ef;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 7px 25px rgba(16, 24, 40, 0.06);
+
+    overflow: hidden;
+
+    margin-bottom: 38px;
+}
+
+.booking-header {
+    padding: 24px 27px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.booking-header h5 {
+    margin: 0;
+
+    font-weight: 700;
+
+    color: #172b4d;
+
+    font-size: 19px;
+}
+
+.booking-header small {
+    color: #667085;
+
+    display: block;
+
+    margin-top: 4px;
+}
+
+.booking-table {
+    margin: 0;
+}
+
+.booking-table thead th {
+    background: #f8fafc;
+
+    color: #667085;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    font-weight: 700;
+
+    border: none;
+
+    padding: 15px 20px;
+}
+
+.booking-table tbody td {
+    padding: 18px 20px;
+
+    border-color: #f0f2f5;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+}
+
+.booking-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.booking-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.mechanic-name {
+    font-weight: 600;
+
+    color: #172b4d;
+}
+
+.vehicle-name {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status-badge {
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fff3cf;
+    color: #8a5c00;
+}
+
+.status-accepted {
+    background: #def6fa;
+    color: #087c91;
+}
+
+.status-way {
+    background: #e1edff;
+    color: #175cd3;
+}
+
+.status-completed {
+    background: #e2f5e9;
+    color: #157347;
+}
+
+.status-cancelled {
+    background: #ffe6e6;
+    color: #b42318;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 18px;
+
+    background: #e1edff;
+
+    color: #0756c9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 34px;
+}
+
+.empty-state h5 {
+    font-weight: 700;
+
+    color: #172b4d;
+}
+
+.empty-state p {
+    color: #667085;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    border-radius: 20px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f5f9ff
+        );
+
+    border: 1px solid #e1e7ef;
+
+    box-shadow:
+        0 5px 20px rgba(16, 24, 40, 0.04);
+}
+
+.dashboard-footer h5 {
+    color: #172b4d;
+
+    font-weight: 700;
+}
+
+.dashboard-footer p {
+    color: #667085;
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-wrapper {
+        padding: 25px 0 50px;
+    }
+
+    .dashboard-hero {
+        padding: 30px 25px;
+    }
+
+    .dashboard-hero h1 {
+        font-size: 27px;
+    }
+
+    .hero-icon {
+        display: none;
+    }
+
+    .booking-header {
+        padding: 18px;
+    }
+
+    .booking-table thead th,
+    .booking-table tbody td {
+        padding: 13px;
+    }
+
+    .automotive-bg {
+        display: none;
+    }
+
+}
+
+</style>
+
+
+<div class="dashboard-wrapper">
+
+
+    <!-- =====================================================
+         BACKGROUND AUTOMOTIVE ICONS
+         ===================================================== -->
+
+    <div class="automotive-bg">
+
+        <i class="bi bi-car-front-fill bg-car"></i>
+
+        <i class="bi bi-gear-wide-connected bg-gear"></i>
+
+        <i class="bi bi-tools bg-tools"></i>
+
+        <i class="bi bi-lightning-charge-fill bg-ev"></i>
+
+    </div>
+
+
+    <div class="container dashboard-content">
+
+
+        <!-- =====================================================
+             WELCOME HERO
+             ===================================================== -->
+
+        <div class="dashboard-hero">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    ROADRESCUE CUSTOMER PORTAL
+
+                </div>
+
+
+                <h1>
+
+                    Welcome,
+                    {{ user.first_name|default:user.username }}
+
+                </h1>
+
+
+                <p>
+
+                    Manage your roadside assistance requests,
+                    mechanics and vehicle services from one place.
+
+                </p>
+
+            </div>
+
+
+            <i class="bi bi-car-front-fill hero-icon"></i>
+
+        </div>
+
+
+        <!-- =====================================================
+             BOOKING OVERVIEW
+             ===================================================== -->
+
+        <div class="section-title">
+
+            <h5>
+                Booking Overview
+            </h5>
+
+            <span>
+                Your service activity
+            </span>
+
+        </div>
+
+
+        <div class="row g-4 mb-4">
+
+
+            <!-- TOTAL BOOKINGS -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-blue">
+
+                        <i class="bi bi-calendar-check"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ total_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Total Bookings
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING BOOKINGS -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-yellow">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ pending_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Pending Requests
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACCEPTED BOOKINGS -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-cyan">
+
+                        <i class="bi bi-check-circle"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ accepted_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Accepted Services
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLETED BOOKINGS -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-green">
+
+                        <i class="bi bi-trophy"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ completed_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Completed Services
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SERVICE STATUS
+             ===================================================== -->
+
+        <div class="section-title mt-4">
+
+            <h5>
+                Service Status
+            </h5>
+
+            <span>
+                Current roadside activity
+            </span>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- MECHANIC ON THE WAY -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-blue">
+
+                        <i class="bi bi-car-front-fill"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ on_the_way_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Mechanic On The Way
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CANCELLED -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-red">
+
+                        <i class="bi bi-x-circle"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ cancelled_bookings }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Cancelled Requests
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REVIEWS -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-purple">
+
+                        <i class="bi bi-star-fill"></i>
+
+                    </div>
+
+
+                    <div class="stat-number">
+
+                        {{ total_reviews }}
+
+                    </div>
+
+
+                    <div class="stat-label">
+
+                        Reviews Given
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             QUICK ACTIONS
+             ===================================================== -->
+
+        <div class="quick-actions">
+
+
+            <div class="section-title">
+
+                <h5>
+                    Quick Actions
+                </h5>
+
+                <span>
+                    Get help when you need it
+                </span>
+
+            </div>
+
+
+            <div class="row g-3">
+
+
+                <!-- FIND MECHANIC -->
+
+                <div class="col-md-4">
+
+                    <a
+                        href="{% url 'mechanic_list' %}"
+                        class="action-card"
+                    >
+
+                        <div class="action-icon">
+
+                            <i class="bi bi-tools"></i>
+
+                        </div>
+
+
+                        <div class="action-text">
+
+                            <strong>
+
+                                Find a Mechanic
+
+                            </strong>
+
+
+                            <small>
+
+                                Get vehicle repair assistance
+
+                            </small>
+
+                        </div>
+
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- MY BOOKINGS -->
+
+                <div class="col-md-4">
+
+                    <a
+                        href="{% url 'my_bookings' %}"
+                        class="action-card"
+                    >
+
+                        <div class="action-icon">
+
+                            <i class="bi bi-clipboard-check"></i>
+
+                        </div>
+
+
+                        <div class="action-text">
+
+                            <strong>
+
+                                My Bookings
+
+                            </strong>
+
+
+                            <small>
+
+                                Check your service requests
+
+                            </small>
+
+                        </div>
+
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <div class="col-md-4">
+
+                    <a
+                        href="{% url 'notification_list' %}"
+                        class="action-card"
+                    >
+
+                        <div class="action-icon">
+
+                            <i class="bi bi-bell-fill"></i>
+
+                        </div>
+
+
+                        <div class="action-text">
+
+                            <strong>
+
+                                Notifications
+
+                            </strong>
+
+
+                            <small>
+
+                                Check service updates
+
+                                {% if unread_notifications > 0 %}
+
+                                    <span class="badge bg-danger ms-1">
+
+                                        {{ unread_notifications }}
+
+                                    </span>
+
+                                {% endif %}
+
+                            </small>
+
+                        </div>
+
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             RECENT BOOKINGS
+             ===================================================== -->
+
+        <div class="booking-card">
+
+
+            <div class="booking-header">
+
+                <div>
+
+                    <h5>
+
+                        Recent Bookings
+
+                    </h5>
+
+
+                    <small>
+
+                        Your latest roadside assistance requests
+
+                    </small>
+
+                </div>
+
+
+                <i class="bi bi-clock-history text-primary fs-4"></i>
+
+            </div>
+
+
+            {% if recent_bookings %}
+
+
+                <div class="table-responsive">
+
+                    <table class="table booking-table align-middle">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Mechanic
+                                </th>
+
+                                <th>
+                                    Vehicle
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            {% for booking in recent_bookings %}
+
+
+                                <tr>
+
+
+                                    <!-- MECHANIC -->
+
+                                    <td>
+
+                                        <span class="mechanic-name">
+
+                                            <i class="bi bi-person-wrench text-primary me-2"></i>
+
+                                            {{ booking.mechanic.shop_name }}
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- VEHICLE -->
+
+                                    <td>
+
+                                        <span class="vehicle-name">
+
+                                            <i class="bi bi-car-front text-secondary"></i>
+
+                                            {{ booking.vehicle_type }}
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- DATE -->
+
+                                    <td>
+
+                                        {{ booking.booking_date|date:"d M Y, h:i A" }}
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+
+                                        {% if booking.status == "Pending" %}
+
+                                            <span class="status-badge status-pending">
+
+                                                <i class="bi bi-hourglass-split me-1"></i>
+
+                                                Pending
+
+                                            </span>
+
+
+                                        {% elif booking.status == "Accepted" %}
+
+                                            <span class="status-badge status-accepted">
+
+                                                <i class="bi bi-check-circle me-1"></i>
+
+                                                Accepted
+
+                                            </span>
+
+
+                                        {% elif booking.status == "On The Way" %}
+
+                                            <span class="status-badge status-way">
+
+                                                <i class="bi bi-car-front-fill me-1"></i>
+
+                                                On The Way
+
+                                            </span>
+
+
+                                        {% elif booking.status == "Completed" %}
+
+                                            <span class="status-badge status-completed">
+
+                                                <i class="bi bi-check-circle-fill me-1"></i>
+
+                                                Completed
+
+                                            </span>
+
+
+                                        {% elif booking.status == "Cancelled" %}
+
+                                            <span class="status-badge status-cancelled">
+
+                                                <i class="bi bi-x-circle me-1"></i>
+
+                                                Cancelled
+
+                                            </span>
+
+                                        {% endif %}
+
+
+                                    </td>
+
+
+                                    <!-- ACTION -->
+
+                                    <td>
+
+                                        <a
+                                            href="{% url 'booking_detail' booking.id %}"
+                                            class="btn btn-sm btn-outline-primary rounded-pill px-3"
+                                        >
+
+                                            <i class="bi bi-eye me-1"></i>
+
+                                            View Details
+
+                                        </a>
+
+                                    </td>
+
+
+                                </tr>
+
+
+                            {% endfor %}
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i class="bi bi-car-front"></i>
+
+                    </div>
+
+
+                    <h5>
+
+                        No bookings yet
+
+                    </h5>
+
+
+                    <p>
+
+                        Find a trusted mechanic and request roadside assistance.
+
+                    </p>
+
+
+                    <a
+                        href="{% url 'mechanic_list' %}"
+                        class="btn btn-primary rounded-pill px-4"
+                    >
+
+                        <i class="bi bi-tools me-2"></i>
+
+                        Find a Mechanic
+
+                    </a>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER
+             ===================================================== -->
+
+        <div class="dashboard-footer text-center">
+
+
+            <h5>
+
+                <i class="bi bi-shield-check text-primary me-2"></i>
+
+                RoadRescue
+
+            </h5>
+
+
+            <p>
+
+                Reliable roadside assistance, professional mechanics
+                and faster vehicle support when you need it.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

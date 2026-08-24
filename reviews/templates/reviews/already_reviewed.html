@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .review-status-page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 65px 20px 70px;
+    }
+
+    .review-status-card {
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(11, 31, 58, 0.09);
+        text-align: center;
+    }
+
+    .review-status-body {
+        padding: 55px 45px;
+    }
+
+    .status-icon {
+        width: 92px;
+        height: 92px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: #e8f7ef;
+        color: #198754;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #c8ead7;
+        box-shadow: 0 8px 20px rgba(25, 135, 84, 0.08);
+    }
+
+    .status-icon i {
+        font-size: 46px;
+    }
+
+    .status-title {
+        color: #0b1f3a;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .status-lead {
+        color: #344054;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .status-description {
+        color: #667085;
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 540px;
+        margin: auto;
+    }
+
+    .status-divider {
+        border: 0;
+        border-top: 1px solid #e9edf2;
+        margin: 30px 0;
+    }
+
+    .status-info {
+        background: #f1f7ff;
+        border: 1px solid #d7e8ff;
+        border-radius: 13px;
+        padding: 17px 20px;
+        color: #174a7e;
+        text-align: left;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .status-info i {
+        color: #0d6efd;
+    }
+
+    .status-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .status-actions .btn {
+        border-radius: 11px;
+        padding: 12px 21px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .status-footer {
+        color: #8a96a6;
+        font-size: 12px;
+        margin-top: 25px;
+    }
+
+    @media (max-width: 576px) {
+
+        .review-status-page {
+            padding: 40px 15px 50px;
+        }
+
+        .review-status-body {
+            padding: 40px 22px;
+        }
+
+        .status-title {
+            font-size: 1.65rem;
+        }
+
+        .status-actions {
+            flex-direction: column;
+        }
+
+        .status-actions .btn {
+            width: 100%;
+        }
+    }
+
+</style>
+
+
+<div class="review-status-page">
+
+
+    <div class="review-status-card">
+
+
+        <div class="review-status-body">
+
+
+            <!-- ICON -->
+
+            <div class="status-icon">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <h1 class="status-title">
+                Review Already Submitted
+            </h1>
+
+
+            <p class="status-lead">
+                You have already reviewed this mechanic.
+            </p>
+
+
+            <p class="status-description">
+
+                RoadRescue allows each customer to submit
+                only one review for each mechanic.
+
+            </p>
+
+
+            <hr class="status-divider">
+
+
+            <!-- INFORMATION -->
+
+            <div class="status-info">
+
+                <i class="bi bi-info-circle-fill me-2"></i>
+
+                <strong>Thank you for your feedback.</strong>
+
+                Your experience helps the RoadRescue community
+                make better and more informed decisions.
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="status-actions">
+
+                <a
+                    href="{% url 'my_bookings' %}"
+                    class="btn btn-primary">
+
+                    <i class="bi bi-calendar-check me-2"></i>
+
+                    My Bookings
+
+                </a>
+
+
+                <a
+                    href="{% url 'mechanic_list' %}"
+                    class="btn btn-outline-secondary">
+
+                    <i class="bi bi-tools me-2"></i>
+
+                    Find Mechanics
+
+                </a>
+
+            </div>
+
+
+            <div class="status-footer">
+
+                <i class="bi bi-shield-check me-1"></i>
+
+                Thank you for being part of RoadRescue.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

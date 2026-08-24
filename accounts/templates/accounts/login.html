@@ -1,0 +1,422 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .login-wrapper {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+        background: #f5f7fb;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 520px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e9ecef;
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0d6efd, #4f8df7);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .login-header h2 {
+        font-weight: 700;
+        color: #172b4d;
+        margin-bottom: 8px;
+    }
+
+    .login-header p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .login-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 30px;
+    }
+
+    .login-option {
+        text-decoration: none;
+        border: 1px solid #e0e5eb;
+        border-radius: 14px;
+        padding: 28px 15px;
+        text-align: center;
+        transition: all 0.2s ease;
+        background: #ffffff;
+    }
+
+    .login-option:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-option i {
+        font-size: 42px;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .login-option h5 {
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #172b4d;
+    }
+
+    .login-option p {
+        font-size: 13px;
+        color: #6c757d;
+        margin: 0;
+    }
+
+    .user-option i {
+        color: #0d6efd;
+    }
+
+    .mechanic-option i {
+        color: #198754;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #344054;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d0d5dd;
+        border-radius: 9px;
+        font-size: 15px;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+    }
+
+    .error-message {
+        background: #fff1f2;
+        border: 1px solid #fecdd3;
+        color: #b42318;
+        border-radius: 9px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .mechanic-btn {
+        background: linear-gradient(135deg, #198754, #157347);
+    }
+
+    .back-btn {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 22px;
+        font-size: 14px;
+        color: #667085;
+    }
+
+    .register-link a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    @media (max-width: 576px) {
+
+        .login-card {
+            padding: 25px 20px;
+        }
+
+        .login-options {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        {% if not login_type %}
+
+            <!-- ========================= -->
+            <!-- LOGIN TYPE SELECTION -->
+            <!-- ========================= -->
+
+            <div class="login-header">
+
+                <div class="login-icon">
+
+                    <i class="bi bi-person-lock"></i>
+
+                </div>
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Choose how you want to login to RoadRescue.
+                </p>
+
+            </div>
+
+
+            <div class="login-options">
+
+                <a
+                    href="{% url 'login' %}"
+                    class="login-option user-option">
+
+                    <i class="bi bi-person-circle"></i>
+
+                    <h5>User Login</h5>
+
+                    <p>
+                        Login to book and manage roadside assistance.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="{% url 'mechanic_login' %}"
+                    class="login-option mechanic-option">
+
+                    <i class="bi bi-tools"></i>
+
+                    <h5>Mechanic Login</h5>
+
+                    <p>
+                        Login to manage bookings and your services.
+                    </p>
+
+                </a>
+
+            </div>
+
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}">
+                    Create an account
+                </a>
+
+            </div>
+
+
+        {% else %}
+
+            <!-- ========================= -->
+            <!-- LOGIN FORM -->
+            <!-- ========================= -->
+
+            <div class="login-header">
+
+                <div class="login-icon">
+
+                    {% if login_type == "mechanic" %}
+
+                        <i class="bi bi-tools"></i>
+
+                    {% else %}
+
+                        <i class="bi bi-person-lock"></i>
+
+                    {% endif %}
+
+                </div>
+
+
+                {% if login_type == "mechanic" %}
+
+                    <h2>Mechanic Login</h2>
+
+                    <p>
+                        Login to manage your RoadRescue services.
+                    </p>
+
+                {% else %}
+
+                    <h2>User Login</h2>
+
+                    <p>
+                        Login to book roadside assistance.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if error %}
+
+                <div class="error-message">
+
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label for="username">
+
+                        <i class="bi bi-person me-1"></i>
+
+                        Username
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        <i class="bi bi-lock me-1"></i>
+
+                        Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn
+                    {% if login_type == 'mechanic' %}
+                        mechanic-btn
+                    {% endif %}">
+
+                    {% if login_type == "mechanic" %}
+
+                        <i class="bi bi-tools me-2"></i>
+                        Mechanic Login
+
+                    {% else %}
+
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        User Login
+
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'login' %}"
+                class="back-btn">
+
+                ← Back to Login Options
+
+            </a>
+
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}">
+                    Create an account
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

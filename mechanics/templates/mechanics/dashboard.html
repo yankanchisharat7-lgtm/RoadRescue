@@ -1,0 +1,1143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ================= GENERAL ================= */
+
+    .dashboard-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 35px 15px 60px;
+    }
+
+    .dashboard-title {
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        color: #212529;
+    }
+
+    .dashboard-subtitle {
+        color: #6c757d;
+        font-size: 1rem;
+    }
+
+
+    /* ================= PROFILE ================= */
+
+    .profile-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    .profile-top {
+        height: 95px;
+        background: linear-gradient(135deg, #0d6efd, #084298);
+    }
+
+    .profile-body {
+        padding: 0 35px 30px;
+    }
+
+    .profile-photo-wrapper {
+        margin-top: -55px;
+        margin-bottom: 20px;
+    }
+
+    .profile-photo {
+        width: 125px;
+        height: 125px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-placeholder {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        background: #f1f3f5;
+        border: 5px solid #ffffff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #adb5bd;
+        font-size: 55px;
+    }
+
+    .shop-name {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #212529;
+    }
+
+    .profile-detail {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #6c757d;
+        margin-bottom: 10px;
+    }
+
+    .profile-detail i {
+        color: #0d6efd;
+        width: 20px;
+    }
+
+    .rating {
+        color: #f59f00;
+        font-weight: 700;
+    }
+
+    .availability-online {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #d1e7dd;
+        color: #0f5132;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .availability-offline {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #f8d7da;
+        color: #842029;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .profile-actions .btn {
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 10px 18px;
+    }
+
+
+    /* ================= STATISTICS ================= */
+
+    .stat-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 18px;
+        transition: all 0.25s ease;
+        height: 100%;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-size: 22px;
+    }
+
+    .icon-blue {
+        background: #e7f1ff;
+        color: #0d6efd;
+    }
+
+    .icon-yellow {
+        background: #fff3cd;
+        color: #997404;
+    }
+
+    .icon-cyan {
+        background: #cff4fc;
+        color: #087990;
+    }
+
+    .icon-green {
+        background: #d1e7dd;
+        color: #146c43;
+    }
+
+    .icon-red {
+        background: #f8d7da;
+        color: #b02a37;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        color: #6c757d;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    /* ================= BOOKINGS ================= */
+
+    .booking-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+    }
+
+    .booking-header {
+        padding: 22px 28px;
+        border-bottom: 1px solid #e9ecef;
+        background: #ffffff;
+    }
+
+    .booking-title {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .booking-header-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e7f1ff;
+        color: #0d6efd;
+        font-size: 20px;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .booking-table {
+        margin-bottom: 0;
+        min-width: 1000px;
+    }
+
+    .booking-table thead th {
+        background: #f8f9fa;
+        color: #495057;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        padding: 16px;
+        border-bottom: 1px solid #dee2e6;
+        white-space: nowrap;
+    }
+
+    .booking-table tbody td {
+        padding: 18px 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid #f1f3f5;
+    }
+
+    .booking-table tbody tr {
+        transition: background 0.2s ease;
+    }
+
+    .booking-table tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    .customer-name {
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .customer-info {
+        display: block;
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 4px;
+    }
+
+    .problem-text {
+        max-width: 220px;
+        color: #495057;
+    }
+
+
+    /* ================= STATUS ================= */
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 11px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-accepted {
+        background: #cff4fc;
+        color: #055160;
+    }
+
+    .status-way {
+        background: #cfe2ff;
+        color: #084298;
+    }
+
+    .status-completed {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    .status-default {
+        background: #e9ecef;
+        color: #495057;
+    }
+
+
+    /* ================= ACTION BUTTONS ================= */
+
+    .action-btn {
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
+
+    /* ================= EMPTY STATE ================= */
+
+    .empty-state {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .empty-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+
+    /* ================= FOOTER ACTION ================= */
+
+    .dashboard-footer {
+        text-align: center;
+        margin-top: 35px;
+    }
+
+    .dashboard-footer .btn {
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 11px 22px;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+        .dashboard-wrapper {
+            padding-top: 25px;
+        }
+
+        .dashboard-title {
+            font-size: 1.9rem;
+        }
+
+        .profile-body {
+            padding: 0 22px 25px;
+        }
+
+        .profile-top {
+            height: 75px;
+        }
+
+        .profile-photo-wrapper {
+            margin-top: -45px;
+        }
+
+        .profile-actions {
+            margin-top: 20px;
+        }
+
+        .profile-actions .btn {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .shop-name {
+            font-size: 1.35rem;
+        }
+
+    }
+
+</style>
+
+
+<div class="dashboard-wrapper">
+
+
+    <!-- ================= DASHBOARD HEADER ================= -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="dashboard-title">
+            Mechanic Dashboard
+        </h1>
+
+        <p class="dashboard-subtitle mt-2">
+            Welcome back, {{ mechanic.name }}.
+            Manage your profile, availability and customer bookings.
+        </p>
+
+    </div>
+
+
+    <!-- ================= MECHANIC PROFILE ================= -->
+
+    <div class="profile-card mb-5">
+
+        <div class="profile-top"></div>
+
+        <div class="profile-body">
+
+            <div class="row align-items-center">
+
+
+                <!-- PROFILE PHOTO -->
+
+                <div class="col-lg-2 col-md-3 text-center">
+
+                    <div class="profile-photo-wrapper">
+
+                        {% if mechanic.photo %}
+
+                            <img
+                                src="{{ mechanic.photo.url }}"
+                                alt="Mechanic Photo"
+                                class="profile-photo"
+                            >
+
+                        {% else %}
+
+                            <div class="profile-placeholder mx-auto">
+
+                                <i class="bi bi-person-fill"></i>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- MECHANIC DETAILS -->
+
+                <div class="col-lg-6 col-md-5">
+
+                    <div class="shop-name mb-3">
+                        {{ mechanic.shop_name }}
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <i class="bi bi-person"></i>
+
+                        <span>
+                            {{ mechanic.name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        <span>
+                            {{ mechanic.location }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <i class="bi bi-star-fill"></i>
+
+                        <span class="rating">
+                            {{ mechanic.rating }}/5
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <i class="bi bi-circle-fill"></i>
+
+                        <span>
+
+                            {% if mechanic.available %}
+
+                                <span class="availability-online">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Available
+                                </span>
+
+                            {% else %}
+
+                                <span class="availability-offline">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Currently Offline
+                                </span>
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE ACTIONS -->
+
+                <div class="col-lg-4 col-md-4 profile-actions text-md-end mt-4 mt-md-0">
+
+                    <a
+                        href="{% url 'edit_mechanic_profile' %}"
+                        class="btn btn-primary me-md-1"
+                    >
+
+                        <i class="bi bi-pencil-square me-1"></i>
+                        Edit Profile
+
+                    </a>
+
+
+                    {% if mechanic.available %}
+
+                        <a
+                            href="{% url 'toggle_availability' mechanic.id %}"
+                            class="btn btn-outline-danger"
+                        >
+
+                            <i class="bi bi-toggle-off me-1"></i>
+                            Go Offline
+
+                        </a>
+
+                    {% else %}
+
+                        <a
+                            href="{% url 'toggle_availability' mechanic.id %}"
+                            class="btn btn-success"
+                        >
+
+                            <i class="bi bi-toggle-on me-1"></i>
+                            Go Online
+
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="row g-3 mb-5">
+
+
+        <!-- TOTAL JOBS -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-blue">
+
+                        <i class="bi bi-clipboard-check"></i>
+
+                    </div>
+
+                    <div class="stat-number text-primary">
+                        {{ total_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        Total Jobs
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-yellow">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                    </div>
+
+                    <div class="stat-number text-warning">
+                        {{ pending_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        Pending
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACCEPTED -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-cyan">
+
+                        <i class="bi bi-check-circle"></i>
+
+                    </div>
+
+                    <div class="stat-number text-info">
+                        {{ accepted_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        Accepted
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ON THE WAY -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-blue">
+
+                        <i class="bi bi-truck"></i>
+
+                    </div>
+
+                    <div class="stat-number text-primary">
+                        {{ on_the_way_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        On The Way
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPLETED -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-green">
+
+                        <i class="bi bi-trophy"></i>
+
+                    </div>
+
+                    <div class="stat-number text-success">
+                        {{ completed_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        Completed
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CANCELLED -->
+
+        <div class="col-6 col-md-4 col-lg-2">
+
+            <div class="stat-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="stat-icon icon-red">
+
+                        <i class="bi bi-x-circle"></i>
+
+                    </div>
+
+                    <div class="stat-number text-danger">
+                        {{ cancelled_jobs }}
+                    </div>
+
+                    <div class="stat-label">
+                        Cancelled
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CUSTOMER BOOKINGS ================= -->
+
+    <div class="booking-card mb-5">
+
+
+        <!-- BOOKING HEADER -->
+
+        <div class="booking-header">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <div class="booking-header-icon">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h3 class="booking-title">
+                        Customer Bookings
+                    </h3>
+
+                    <small class="text-muted">
+                        Manage and update your service requests
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOOKING CONTENT -->
+
+        <div class="card-body p-0">
+
+            {% if bookings %}
+
+                <div class="table-wrapper">
+
+                    <table class="table booking-table align-middle">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Vehicle
+                                </th>
+
+                                <th>
+                                    Service Request
+                                </th>
+
+                                <th>
+                                    Booking Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for booking in bookings %}
+
+                            <tr>
+
+
+                                <!-- CUSTOMER -->
+
+                                <td>
+
+                                    <div class="customer-name">
+                                        {{ booking.customer_name }}
+                                    </div>
+
+                                    <span class="customer-info">
+                                        <i class="bi bi-telephone"></i>
+                                        {{ booking.customer_phone }}
+                                    </span>
+
+                                    <span class="customer-info">
+                                        <i class="bi bi-geo-alt"></i>
+                                        {{ booking.customer_location }}
+                                    </span>
+
+                                </td>
+
+
+                                <!-- VEHICLE -->
+
+                                <td>
+
+                                    <span class="fw-semibold">
+                                        {{ booking.vehicle_type }}
+                                    </span>
+
+                                </td>
+
+
+                                <!-- PROBLEM -->
+
+                                <td>
+
+                                    <div class="problem-text">
+                                        {{ booking.problem }}
+                                    </div>
+
+                                </td>
+
+
+                                <!-- DATE -->
+
+                                <td>
+
+                                    <span class="fw-semibold text-nowrap">
+
+                                        {{ booking.booking_date|date:"d M Y" }}
+
+                                    </span>
+
+                                    <br>
+
+                                    <small class="text-muted">
+
+                                        {{ booking.booking_date|date:"h:i A" }}
+
+                                    </small>
+
+                                </td>
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    {% if booking.status == "Pending" %}
+
+                                        <span class="status-badge status-pending">
+                                            <i class="bi bi-clock"></i>
+                                            Pending
+                                        </span>
+
+                                    {% elif booking.status == "Accepted" %}
+
+                                        <span class="status-badge status-accepted">
+                                            <i class="bi bi-check-circle"></i>
+                                            Accepted
+                                        </span>
+
+                                    {% elif booking.status == "On The Way" %}
+
+                                        <span class="status-badge status-way">
+                                            <i class="bi bi-truck"></i>
+                                            On The Way
+                                        </span>
+
+                                    {% elif booking.status == "Completed" %}
+
+                                        <span class="status-badge status-completed">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            Completed
+                                        </span>
+
+                                    {% elif booking.status == "Cancelled" %}
+
+                                        <span class="status-badge status-cancelled">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                            Cancelled
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="status-badge status-default">
+                                            {{ booking.status }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <!-- ACTION -->
+
+                                <td>
+
+
+                                    <!-- PENDING → ACCEPT -->
+
+                                    {% if booking.status == "Pending" %}
+
+                                        <form
+                                            method="POST"
+                                            action="{% url 'update_booking_status' booking.id %}"
+                                            class="d-inline"
+                                        >
+
+                                            {% csrf_token %}
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-success action-btn"
+                                            >
+
+                                                <i class="bi bi-check-lg me-1"></i>
+                                                Accept
+
+                                            </button>
+
+                                        </form>
+
+
+                                    <!-- ACCEPTED → ON THE WAY -->
+
+                                    {% elif booking.status == "Accepted" %}
+
+                                        <form
+                                            method="POST"
+                                            action="{% url 'update_booking_status' booking.id %}"
+                                            class="d-inline"
+                                        >
+
+                                            {% csrf_token %}
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-primary action-btn"
+                                            >
+
+                                                <i class="bi bi-truck me-1"></i>
+                                                On The Way
+
+                                            </button>
+
+                                        </form>
+
+
+                                    <!-- ON THE WAY → COMPLETE -->
+
+                                    {% elif booking.status == "On The Way" %}
+
+                                        <form
+                                            method="POST"
+                                            action="{% url 'update_booking_status' booking.id %}"
+                                            class="d-inline"
+                                        >
+
+                                            {% csrf_token %}
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-success action-btn"
+                                            >
+
+                                                <i class="bi bi-flag-fill me-1"></i>
+                                                Complete
+
+                                            </button>
+
+                                        </form>
+
+
+                                    <!-- COMPLETED -->
+
+                                    {% elif booking.status == "Completed" %}
+
+                                        <span class="status-badge status-completed">
+
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            Completed
+
+                                        </span>
+
+
+                                    <!-- CANCELLED -->
+
+                                    {% elif booking.status == "Cancelled" %}
+
+                                        <span class="status-badge status-cancelled">
+
+                                            <i class="bi bi-x-circle-fill"></i>
+                                            Cancelled
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+
+                        <i class="bi bi-calendar-x"></i>
+
+                    </div>
+
+                    <h5 class="fw-bold">
+                        No Bookings Yet
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Customer service requests will appear here
+                        when they are assigned to you.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ACTION ================= -->
+
+    <div class="dashboard-footer">
+
+        <a
+            href="{% url 'mechanic_list' %}"
+            class="btn btn-outline-primary"
+        >
+
+            <i class="bi bi-arrow-left me-2"></i>
+            View All Mechanics
+
+        </a>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

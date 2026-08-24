@@ -1,0 +1,1051 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* ================= GENERAL ================= */
+
+    .detail-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 35px 15px 60px;
+    }
+
+    .main-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+    }
+
+
+    /* ================= PROFILE HEADER ================= */
+
+    .profile-header {
+        background: linear-gradient(135deg, #0d6efd, #084298);
+        color: white;
+        padding: 35px 25px;
+        text-align: center;
+    }
+
+    .profile-header h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .profile-header p {
+        margin: 0;
+        opacity: 0.85;
+        font-size: 1rem;
+    }
+
+    .profile-body {
+        padding: 40px;
+    }
+
+
+    /* ================= PROFILE PHOTO ================= */
+
+    .profile-photo {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 6px solid #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-placeholder {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: #f1f3f5;
+        border: 6px solid #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        color: #adb5bd;
+        font-size: 85px;
+    }
+
+
+    /* ================= SECTION TITLES ================= */
+
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #212529;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-title-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+
+    /* ================= INFORMATION ================= */
+
+    .info-list {
+        border: 1px solid #e9ecef;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        padding: 14px 17px;
+        border-bottom: 1px solid #f1f3f5;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: #f1f6ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 13px;
+        flex-shrink: 0;
+    }
+
+    .info-label {
+        color: #6c757d;
+        font-size: 13px;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .info-value {
+        color: #212529;
+        font-weight: 600;
+    }
+
+
+    /* ================= BADGES ================= */
+
+    .rating-badge {
+        background: #fff3cd;
+        color: #856404;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .available-badge {
+        background: #d1e7dd;
+        color: #0f5132;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .offline-badge {
+        background: #f8d7da;
+        color: #842029;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .jobs-badge {
+        background: #cff4fc;
+        color: #055160;
+        padding: 7px 12px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+
+    /* ================= SERVICE CHARGES ================= */
+
+    .charges-card {
+        border: 1px solid #e9ecef;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .charges-table {
+        margin-bottom: 0;
+    }
+
+    .charges-table th {
+        background: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        padding: 15px 17px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .charges-table td {
+        padding: 15px 17px;
+        font-weight: 600;
+        color: #212529;
+        text-align: right;
+    }
+
+    .charges-table tr:last-child th,
+    .charges-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .charge-amount {
+        color: #0d6efd;
+    }
+
+
+    /* ================= ACTION BUTTONS ================= */
+
+    .action-section {
+        border-top: 1px solid #e9ecef;
+        margin-top: 35px;
+        padding-top: 30px;
+    }
+
+    .action-section .btn {
+        border-radius: 11px;
+        padding: 11px 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= REVIEWS ================= */
+
+    .reviews-section {
+        margin-top: 45px;
+    }
+
+    .reviews-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+
+    .reviews-heading h3 {
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .review-count {
+        background: #e7f1ff;
+        color: #0d6efd;
+        padding: 7px 13px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .review-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 17px;
+        transition: all 0.25s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+    }
+
+    .review-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 17px;
+    }
+
+    .review-user {
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .review-date {
+        color: #6c757d;
+        font-size: 12px;
+    }
+
+    .review-rating {
+        background: #fff3cd;
+        color: #856404;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .review-comment {
+        color: #495057;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= EMPTY REVIEWS ================= */
+
+    .empty-reviews {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 17px;
+        padding: 45px 20px;
+        text-align: center;
+    }
+
+    .empty-review-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #eef5ff;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+
+    /* ================= BACK BUTTON ================= */
+
+    .back-section {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .back-section .btn {
+        border-radius: 10px;
+        padding: 11px 24px;
+        font-weight: 600;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+        .detail-wrapper {
+            padding-top: 25px;
+        }
+
+        .profile-body {
+            padding: 25px 20px;
+        }
+
+        .profile-header {
+            padding: 28px 18px;
+        }
+
+        .profile-header h2 {
+            font-size: 1.6rem;
+        }
+
+        .profile-photo,
+        .profile-placeholder {
+            width: 150px;
+            height: 150px;
+        }
+
+        .profile-placeholder {
+            font-size: 70px;
+        }
+
+        .reviews-heading {
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+    }
+
+</style>
+
+
+<div class="detail-wrapper">
+
+
+    <!-- ============================= -->
+    <!-- MECHANIC PROFILE -->
+    <!-- ============================= -->
+
+    <div class="main-card">
+
+
+        <!-- PROFILE HEADER -->
+
+        <div class="profile-header">
+
+            <h2>
+                {{ mechanic.shop_name }}
+            </h2>
+
+            <p>
+                {{ mechanic.vehicle_type }} Specialist
+            </p>
+
+        </div>
+
+
+        <div class="profile-body">
+
+
+            <!-- ============================= -->
+            <!-- MECHANIC PHOTO -->
+            <!-- ============================= -->
+
+            <div class="text-center mb-5">
+
+                {% if mechanic.photo %}
+
+                    <img
+                        src="{{ mechanic.photo.url }}"
+                        alt="{{ mechanic.shop_name }} Photo"
+                        class="profile-photo"
+                    >
+
+                {% else %}
+
+                    <div class="profile-placeholder">
+
+                        <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- INFORMATION + CHARGES -->
+            <!-- ============================= -->
+
+            <div class="row g-5">
+
+
+                <!-- ============================= -->
+                <!-- MECHANIC INFORMATION -->
+                <!-- ============================= -->
+
+                <div class="col-lg-6">
+
+                    <h4 class="section-title">
+
+                        <span class="section-title-icon">
+                            <i class="bi bi-person-gear"></i>
+                        </span>
+
+                        Mechanic Information
+
+                    </h4>
+
+
+                    <div class="info-list">
+
+
+                        <!-- NAME -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Mechanic Name
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.name }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Phone
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.phone }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Email
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.email }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LOCATION -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Location
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.location }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Experience
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.experience }} Years
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- VEHICLE -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-car-front"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Vehicle Type
+                                </span>
+
+                                <span class="info-value">
+                                    {{ mechanic.vehicle_type }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RATING -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Customer Rating
+                                </span>
+
+                                <span class="rating-badge">
+                                    ★ {{ mechanic.rating }}/5
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- AVAILABILITY -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-circle-fill"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Current Status
+                                </span>
+
+                                {% if mechanic.available %}
+
+                                    <span class="available-badge">
+                                        <i class="bi bi-check-circle-fill me-1"></i>
+                                        Available
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="offline-badge">
+                                        <i class="bi bi-x-circle-fill me-1"></i>
+                                        Offline
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COMPLETED JOBS -->
+
+                        <div class="info-row">
+
+                            <div class="info-icon">
+                                <i class="bi bi-check2-all"></i>
+                            </div>
+
+                            <div>
+
+                                <span class="info-label">
+                                    Completed Jobs
+                                </span>
+
+                                <span class="jobs-badge">
+                                    {{ completed_jobs }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- SERVICE CHARGES -->
+                <!-- ============================= -->
+
+                <div class="col-lg-6">
+
+                    <h4 class="section-title">
+
+                        <span class="section-title-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+
+                        Service Charges
+
+                    </h4>
+
+
+                    <div class="charges-card">
+
+                        <div class="table-responsive">
+
+                            <table class="table charges-table">
+
+                                <tbody>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Inspection
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.inspection_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Battery Service
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.battery_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Tyre Change
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.tyre_change_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Engine Repair
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.engine_repair_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Oil Change
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.oil_change_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Brake Repair
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.brake_repair_charge }}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <th>
+                                            Towing
+                                        </th>
+
+                                        <td class="charge-amount">
+                                            ₹ {{ mechanic.towing_charge_per_km }}
+                                            / km
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- ACTION BUTTONS -->
+            <!-- ============================= -->
+
+            <div class="action-section text-center">
+
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query={{ mechanic.location }}"
+                    target="_blank"
+                    class="btn btn-outline-primary me-2"
+                >
+
+                    <i class="bi bi-geo-alt me-2"></i>
+                    View Location
+
+                </a>
+
+
+                {% if mechanic.available %}
+
+                    <a
+                        href="{% url 'book_mechanic' mechanic.id %}"
+                        class="btn btn-success me-2"
+                    >
+
+                        <i class="bi bi-calendar-check me-2"></i>
+                        Book Now
+
+                    </a>
+
+                {% else %}
+
+                    <button
+                        class="btn btn-secondary me-2"
+                        disabled
+                    >
+
+                        <i class="bi bi-person-x me-2"></i>
+                        Currently Offline
+
+                    </button>
+
+                {% endif %}
+
+
+                <a
+                    href="{% url 'add_review' mechanic.id %}"
+                    class="btn btn-warning"
+                >
+
+                    <i class="bi bi-star me-2"></i>
+                    Write a Review
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- CUSTOMER REVIEWS -->
+    <!-- ============================= -->
+
+    <div class="reviews-section">
+
+
+        <div class="reviews-heading">
+
+            <div>
+
+                <h3>
+                    Customer Reviews
+                </h3>
+
+                <small class="text-muted">
+                    Feedback from RoadRescue customers
+                </small>
+
+            </div>
+
+
+            {% if reviews %}
+
+                <span class="review-count">
+
+                    <i class="bi bi-chat-square-text me-1"></i>
+
+                    {{ reviews|length }}
+                    Review{{ reviews|length|pluralize }}
+
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if reviews %}
+
+
+            {% for review in reviews %}
+
+                <div class="review-card mb-3">
+
+                    <div class="card-body p-4">
+
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="review-avatar">
+
+                                    {{ review.customer.username|first|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="review-user">
+
+                                        {{ review.customer.username }}
+
+                                    </div>
+
+                                    <div class="review-date">
+
+                                        {{ review.created_at|date:"d M Y, h:i A" }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="review-rating">
+
+                                ★ {{ review.rating }}/5
+
+                            </span>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <p class="review-comment">
+
+                            "{{ review.comment }}"
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty-reviews">
+
+                <div class="empty-review-icon">
+
+                    <i class="bi bi-chat-square-text"></i>
+
+                </div>
+
+                <h5 class="fw-bold">
+                    No Reviews Yet
+                </h5>
+
+                <p class="text-muted mb-0">
+
+                    Be the first customer to review this mechanic
+                    after completing a booking.
+
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- BACK BUTTON -->
+    <!-- ============================= -->
+
+    <div class="back-section">
+
+        <a
+            href="{% url 'mechanic_list' %}"
+            class="btn btn-outline-primary"
+        >
+
+            <i class="bi bi-arrow-left me-2"></i>
+            Back to Mechanics
+
+        </a>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
